@@ -6,9 +6,9 @@
 #include "logger.h"
 #include "cece_clock.h"
 #include "cece_math.h"
-#include "camera/cece_camera.h"
 #include "render_models/terrain.h"
 #include "render_models/blocky.h"
+#include "render_models/blocky_balboa.h"
 
 float g_deltaTime;
 
@@ -19,15 +19,18 @@ int main() {
 	ShowConsole();
 	Window window;
 
-	cece::Camera camera;
+	BlockyBalboa blocky_balboa;
 
-	Blocky blocky;
-	blocky.accessProgram()->setUniform("mvp", camera.getMVP().c_arr());
+	Blocky blocky_1;
+	blocky_1.accessProgram()->setUniform("mvp", blocky_balboa.getMVP().c_arr());
+	blocky_1.setWorldPosition({ 0.0f, 0.0f, -10.0f });
 
 	Terrain terrain;
-	terrain.accessProgram()->setUniform("mvp", camera.getMVP().c_arr());
+	terrain.accessProgram()->setUniform("mvp", blocky_balboa.getMVP().c_arr());
 
 	cece::Clock Time;
+
+	cece::Vector3 blocky_position = { 0, 0, 0 };
 
 	while (window.isOpen()) {
 		g_deltaTime = Time.deltaTime();
@@ -36,22 +39,24 @@ int main() {
 		window.setSize(g_gl_width, g_gl_height);
 		window.clear();
 
-		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_W)) camera.moveForward();
-		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_S)) camera.moveBackward();
-		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_D)) camera.moveRight();
-		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_A)) camera.moveLeft();
-		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_SPACE)) camera.moveUp();
-		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_LEFT_SHIFT)) camera.moveDown();
-		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_E)) camera.yawRight();
-		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_Q)) camera.yawLeft();
-		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_UP)) camera.pitchUp();
-		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_DOWN)) camera.pitchDown();
+		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_W)) blocky_balboa.moveForward();
+		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_S)) blocky_balboa.moveBackward();
+		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_D)) blocky_balboa.moveRight();
+		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_A)) blocky_balboa.moveLeft();
+		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_SPACE)) blocky_balboa.moveUp();
+		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_LEFT_SHIFT)) blocky_balboa.moveDown();
+		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_E)) blocky_balboa.yawRight();
+		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_Q)) blocky_balboa.yawLeft();
+		/*if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_UP)) blocky_balboa.accessCamera()->pitchUp();
+		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_DOWN)) blocky_balboa.accessCamera()->pitchDown();*/
 
-		terrain.accessProgram()->updateUniform("mvp", camera.getMVP().c_arr());
+		terrain.accessProgram()->updateUniform("mvp", blocky_balboa.getMVP().c_arr());
 		terrain.draw();
 
-		blocky.accessProgram()->updateUniform("mvp", camera.getMVP().c_arr());
-		blocky.draw();
+		blocky_balboa.draw();
+
+		blocky_1.accessProgram()->updateUniform("mvp", blocky_balboa.getMVP().c_arr());
+		blocky_1.draw();
 
 		window.swapBuffers();
 		if (GLFW_PRESS == glfwGetKey(window.getWindowID(), GLFW_KEY_ESCAPE)) {

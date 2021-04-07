@@ -15,8 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\test.frag" />
-    <None Include="res\shaders\test.vert" />
+    <None Include="res\shaders\blocky_balboa.frag" />
+    <None Include="res\shaders\blocky_balboa.vert" />
     <None Include="res\shaders\terrain.frag" />
     <None Include="res\shaders\terrain.vert" />
   </ItemGroup>
@@ -66,6 +66,9 @@
     <ClCompile Include="src\render_models\blocky.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\render_models\blocky_balboa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\logger.h">
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\render_models\blocky.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render_models\blocky_balboa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

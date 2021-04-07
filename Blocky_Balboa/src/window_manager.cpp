@@ -38,7 +38,7 @@ Window::Window(const bool fullscreen_enabled)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_SAMPLES, 4);
+	glfwWindowHint(GLFW_SAMPLES, 16);
 
 	if (fullscreen_enabled) {
 		GLFWmonitor* mon = glfwGetPrimaryMonitor();
@@ -64,6 +64,7 @@ Window::Window(const bool fullscreen_enabled)
 	gl_log("OpenGL version supported %s\n", version);
 
 	glEnable(GL_DEPTH_TEST);
+	glfwSwapInterval(1);
 }
 
 void Window::updateFPSCounter() {
@@ -75,7 +76,7 @@ void Window::updateFPSCounter() {
 		previous_seconds = current_seconds;
 		double fps = (double)frame_count / elapsed_seconds;
 		char tmp[128];
-		sprintf(tmp, "opengl @ fps: %.2f", fps);
+		sprintf(tmp, "Blocky Balboa @ fps: %.2f", fps);
 		glfwSetWindowTitle(m_WindowID, tmp);
 		frame_count = 0;
 	}

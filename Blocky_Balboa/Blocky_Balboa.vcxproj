@@ -165,8 +165,8 @@
   <ItemGroup>
     <None Include="res\shaders\terrain.frag" />
     <None Include="res\shaders\terrain.vert" />
-    <None Include="res\shaders\test.frag" />
-    <None Include="res\shaders\test.vert" />
+    <None Include="res\shaders\blocky_balboa.frag" />
+    <None Include="res\shaders\blocky_balboa.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\camera\cece_camera.cpp" />
@@ -180,6 +180,7 @@
     <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\render_models\blocky.cpp" />
+    <ClCompile Include="src\render_models\blocky_balboa.cpp" />
     <ClCompile Include="src\shader_manager.cpp" />
     <ClCompile Include="src\shader_parser.cpp" />
     <ClCompile Include="src\window_manager.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="src\math\cece_vector4.h" />
     <ClInclude Include="src\logger.h" />
     <ClInclude Include="src\render_models\blocky.h" />
+    <ClInclude Include="src\render_models\blocky_balboa.h" />
     <ClInclude Include="src\render_models\terrain.h" />
     <ClInclude Include="src\shader_manager.h" />
     <ClInclude Include="src\shader_parser.h" />

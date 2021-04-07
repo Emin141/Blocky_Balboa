@@ -7,7 +7,7 @@ using namespace cece;
 static const float PI = 4.0f * atanf(1);
 extern float g_deltaTime;
 float speed = 20.0f;
-float rot_speed = 120.f;
+float rot_speed = 115.0f;
 
 Camera::Camera()
 {
@@ -106,7 +106,7 @@ Matrix4 Camera::ProjectionMatrix()
 	Matrix4 perspective_transform(0);
 
 	float FOV = 45.f;
-	float aspect_ratio = 4.0f / 3.0f;
+	float aspect_ratio = 8.0f / 5.0f;
 	float far = 100.0f;
 	float near = 0.1f;
 

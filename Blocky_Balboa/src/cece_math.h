@@ -6,4 +6,4 @@
 #include "math/cece_matrix4.h"
 #include "math/cece_e_angle.h"
 
-const float PI = 4.0f * atanf(1);
+//const float PI = 4.0f * atanf(1);
