@@ -114,7 +114,7 @@ void BlockyBalboa::yawRight()
 	m_forward.normalize();
 	m_right = m_forward.CrossMultiply(m_up);
 
-	m_camera->yawRight();
+	m_camera->yaw = m_euler_angle.y * 180.0f / PI + 90.0f;
 	updateCameraPosition();
 	updateToShader();
 
@@ -130,7 +130,7 @@ void BlockyBalboa::yawLeft()
 	m_forward.normalize();
 	m_right = m_forward.CrossMultiply(m_up);
 
-	m_camera->yawLeft();
+	m_camera->yaw = m_euler_angle.y * 180.0f / PI + 90.0f;
 	updateCameraPosition();
 	updateToShader();
 

@@ -22,69 +22,98 @@ Camera::Camera()
 	proj = ProjectionMatrix();
 }
 
-void Camera::moveForward()
-{
-	position += forward * g_deltaTime * speed;
-}
+//Matrix4 Camera::ViewMatrix(const Vector3& target_position, const Vector3& up_direction)
+//{
+//	Matrix4 translate_to_world_origin = createTranslationMatrix(-1.0f * position);
+//
+//	Vector3 forward_direction;
+//	forward_direction = target_position - position;
+//	forward_direction.normalize();
+//
+//	Vector3 right_direction = forward_direction.CrossMultiply(up_direction);
+//
+//	//up_direction = CrossMultiply(right_direction, forward_direction);           //????????
+//
+//	Matrix4 rotate_to_negative_z;
+//
+//	rotate_to_negative_z[0] = right_direction[0];
+//	rotate_to_negative_z[1] = up_direction[0];
+//	rotate_to_negative_z[2] = -forward_direction[0];
+//
+//	rotate_to_negative_z[4] = right_direction[1];
+//	rotate_to_negative_z[5] = up_direction[1];
+//	rotate_to_negative_z[6] = -forward_direction[1];
+//
+//	rotate_to_negative_z[8] = right_direction[2];
+//	rotate_to_negative_z[9] = up_direction[2];
+//	rotate_to_negative_z[10] = -forward_direction[2];
+//
+//	return rotate_to_negative_z * translate_to_world_origin;
+//}
 
-void Camera::moveBackward()
-{
-	position -= forward * g_deltaTime * speed;
-}
-
-void Camera::moveRight()
-{
-	position += right * g_deltaTime * speed;
-}
-
-void Camera::moveLeft()
-{
-	position -= right * g_deltaTime * speed;
-}
-
-void Camera::moveUp()
-{
-	position += up * g_deltaTime * speed;
-}
-
-void Camera::moveDown()
-{
-	position -= up * g_deltaTime * speed;
-}
-
-void Camera::yawRight()
-{
-	yaw += g_deltaTime * rot_speed;
-	yaw = fmodf(yaw, 360.0f);
-	forward = {
-		cosf(PI / 180 * yaw - PI / 2),
-		0.0f,
-		sinf(PI / 180 * yaw - PI / 2)
-	};
-	right = forward.CrossMultiply(up);
-}
-
-void Camera::yawLeft()
-{
-	yaw -= g_deltaTime * rot_speed;
-	yaw = fmodf(yaw, 360.0f);
-	forward = {
-		cosf(PI / 180 * yaw - PI / 2),
-		0.0f,
-		sinf(PI / 180 * yaw - PI / 2)
-	};
-	right = forward.CrossMultiply(up);
-}
-
-void Camera::pitchUp()
-{
-	pitch += g_deltaTime * rot_speed;
-}
-
-void Camera::pitchDown()
-{
-	pitch -= g_deltaTime * rot_speed;
-}
+//void Camera::moveForward()
+//{
+//	position += forward * g_deltaTime * speed;
+//}
+//
+//void Camera::moveBackward()
+//{
+//	position -= forward * g_deltaTime * speed;
+//}
+//
+//void Camera::moveRight()
+//{
+//	position += right * g_deltaTime * speed;
+//}
+//
+//void Camera::moveLeft()
+//{
+//	position -= right * g_deltaTime * speed;
+//}
+//
+//void Camera::moveUp()
+//{
+//	position += up * g_deltaTime * speed;
+//}
+//
+//void Camera::moveDown()
+//{
+//	position -= up * g_deltaTime * speed;
+//}
+//
+//void Camera::yawRight()
+//{
+//	yaw += g_deltaTime * rot_speed;
+//	yaw = fmodf(yaw, 360.0f);
+//	forward = {
+//		cosf(PI / 180 * yaw - PI / 2),
+//		0.0f,
+//		sinf(PI / 180 * yaw - PI / 2)
+//	};
+//	right = forward.CrossMultiply(up);
+//}
+//
+//void Camera::yawLeft()
+//{
+//	yaw -= g_deltaTime * rot_speed;
+//	yaw = fmodf(yaw, 360.0f);
+//	forward = {
+//		cosf(PI / 180 * yaw - PI / 2),
+//		0.0f,
+//		sinf(PI / 180 * yaw - PI / 2)
+//	};
+//	right = forward.CrossMultiply(up);
+//}
+//
+//void Camera::pitchUp()
+//{
+//	pitch += g_deltaTime * rot_speed;
+//}
+//
+//void Camera::pitchDown()
+//{
+//	pitch -= g_deltaTime * rot_speed;
+//}
 
 Matrix4 Camera::getMVP()
 {
@@ -95,8 +124,8 @@ Matrix4 Camera::ViewMatrix()
 {
 	Matrix4 translate = createTranslationMatrix(-1.0f * position);
 
-	Matrix4 undo_yaw = createYRotationMatrix(PI / 180 * yaw);
-	Matrix4 undo_pitch = createXRotationMatrix(PI / 180 * pitch);
+	Matrix4 undo_yaw = createYRotationMatrix(PI / 180.0f * yaw);
+	Matrix4 undo_pitch = createXRotationMatrix(PI / 180.0f * pitch);
 
 	return undo_pitch * undo_yaw * translate;
 }

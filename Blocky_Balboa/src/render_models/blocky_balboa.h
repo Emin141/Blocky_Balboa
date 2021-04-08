@@ -18,8 +18,7 @@ class BlockyBalboa : public Blocky
 public:
 	BlockyBalboa();
 	~BlockyBalboa();
-	inline cece::Matrix4 getMVP() const { return m_camera->getMVP().c_arr(); }
-	//inline cece::Camera* accessCamera() const { return m_camera; }
+	inline cece::Matrix4 getMVP() const { return m_camera->getMVP(); }
 
 	void moveForward();
 	void moveBackward();

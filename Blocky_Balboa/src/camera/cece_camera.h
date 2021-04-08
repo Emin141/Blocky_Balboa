@@ -14,7 +14,7 @@ namespace cece {
 		Vector3 position;
 		float yaw, pitch;
 
-		void moveForward();
+		/*void moveForward();
 		void moveBackward();
 		void moveRight();
 		void moveLeft();
@@ -24,7 +24,7 @@ namespace cece {
 		void yawRight();
 		void yawLeft();
 		void pitchUp();
-		void pitchDown();
+		void pitchDown();*/
 
 		Matrix4 getMVP();
 
@@ -32,6 +32,7 @@ namespace cece {
 
 	private:
 		Matrix4 ViewMatrix();
+		//Matrix4 ViewMatrix(const Vector3& target_position, const Vector3& up_direction);
 		Matrix4 ProjectionMatrix();
 	private:
 		Matrix4 proj;
