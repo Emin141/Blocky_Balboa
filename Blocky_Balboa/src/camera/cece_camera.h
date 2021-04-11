@@ -28,11 +28,10 @@ namespace cece {
 
 		Matrix4 getMVP();
 
-		Vector3 forward, up, right;
+		//Vector3 forward, up, right;
 
 	private:
 		Matrix4 ViewMatrix();
-		//Matrix4 ViewMatrix(const Vector3& target_position, const Vector3& up_direction);
 		Matrix4 ProjectionMatrix();
 	private:
 		Matrix4 proj;

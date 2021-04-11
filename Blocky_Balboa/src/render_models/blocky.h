@@ -10,11 +10,11 @@ public:
 	Blocky();
 	~Blocky();
 	void setWorldPosition(const cece::Vector3& world_position) const;
-	void updateWorldPosition(const cece::Vector3& world_position) const;
+	//void updateWorldPosition(const cece::Vector3& world_position) const;
  	inline ShaderProgram* accessProgram() const { return m_Program; };
 	void draw();
 
-public:
+protected:
 	ShaderProgram* m_Program;
 
 private:

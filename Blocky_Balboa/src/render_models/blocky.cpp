@@ -1,6 +1,7 @@
 #include "blocky.h"
 #include "../math/cece_matrix4.h"
 
+
 Blocky::Blocky()
 {
 	GLfloat vertex_data[] = {
@@ -27,7 +28,7 @@ Blocky::Blocky()
 		2, 6, 4,
 		2, 4, 3,
 		1, 0, 5,
-		1, 5, 7
+		1, 5, 7,
 	};
 
 	glGenBuffers(1, &m_vertex_buffer_ID);
@@ -80,8 +81,8 @@ void Blocky::setWorldPosition(const cece::Vector3& world_position) const
 	m_Program->setUniform("model_matrix", model_matrix.c_arr());
 }
 
-void Blocky::updateWorldPosition(const cece::Vector3& world_position) const
-{
-	cece::Matrix4 model_matrix = cece::createTranslationMatrix(world_position);
-	m_Program->updateUniform("model_matrix", model_matrix.c_arr());
-}
+//void Blocky::updateWorldPosition(const cece::Vector3& world_position) const
+//{
+//	cece::Matrix4 model_matrix = cece::createTranslationMatrix(world_position);
+//	m_Program->updateUniform("model_matrix", model_matrix.c_arr());
+//}

@@ -13,11 +13,11 @@ extern float g_deltaTime;
 
 
 
-class BlockyBalboa : public Blocky
+class Player : public Blocky
 {
 public:
-	BlockyBalboa();
-	~BlockyBalboa();
+	Player();
+	~Player();
 	inline cece::Matrix4 getMVP() const { return m_camera->getMVP(); }
 
 	void moveForward();

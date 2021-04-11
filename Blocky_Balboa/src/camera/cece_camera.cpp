@@ -15,9 +15,9 @@ Camera::Camera()
 	yaw = 0.0f;
 	pitch = 0.0f;
 
-	forward = Vector3(0.0f, 0.0f, -1.0f);
+	/*forward = Vector3(0.0f, 0.0f, -1.0f);
 	up = Vector3(0.0f, 1.0f, 0.0f);
-	right = Vector3(1.0f, 0.0f, 0.0f);
+	right = Vector3(1.0f, 0.0f, 0.0f);*/
 
 	proj = ProjectionMatrix();
 }
@@ -124,8 +124,8 @@ Matrix4 Camera::ViewMatrix()
 {
 	Matrix4 translate = createTranslationMatrix(-1.0f * position);
 
-	Matrix4 undo_yaw = createYRotationMatrix(PI / 180.0f * yaw);
-	Matrix4 undo_pitch = createXRotationMatrix(PI / 180.0f * pitch);
+	Matrix4 undo_yaw = createYRotationMatrix(yaw);
+	Matrix4 undo_pitch = createXRotationMatrix(pitch);
 
 	return undo_pitch * undo_yaw * translate;
 }
@@ -134,10 +134,10 @@ Matrix4 Camera::ProjectionMatrix()
 {
 	Matrix4 perspective_transform(0);
 
-	float FOV = 45.f;
-	float aspect_ratio = 8.0f / 5.0f;
-	float far = 100.0f;
-	float near = 0.1f;
+	constexpr float FOV = 45.f;
+	constexpr float aspect_ratio = 16.0f / 9.0f;
+	constexpr float far = 100.0f;
+	constexpr float near = 0.1f;
 
 	float cot = 1.0f / tanf(PI / 180.0f * FOV / 2.0f);
 
