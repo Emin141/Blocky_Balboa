@@ -8,10 +8,7 @@
 #include "../math/cece_matrix4.h"
 #include "../math/cece_e_angle.h"
 
-typedef cece::Vector3 Direction;
 extern float g_deltaTime;
-
-
 
 class Player : public Blocky
 {
@@ -30,14 +27,18 @@ public:
 	void yawRight();
 	void yawLeft();
 
+	void yaw(float dx);
+	void pitch(float dy);
+
 private:
 	cece::Vector3 m_position;
-	Direction m_forward, m_up, m_right;
+	cece::Vector3 m_forward, m_up, m_right;
 	cece::Camera* m_camera;
 	cece::EAngle m_euler_angle;
 	cece::Vector3 m_camera_offeset;
 	cece::Matrix4 model_matrix;
-	float lin_speed, rot_speed;
+
+	float lin_speed, rot_speed, mouse_sensitivity;
 
 	void updateCameraPosition();
 	void updateToShader();

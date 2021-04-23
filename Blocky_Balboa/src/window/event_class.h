@@ -3,12 +3,12 @@
 class Event
 {
 public:
-	enum class Type {
-		NONE = -1,
-		CLOSE = 0,
-		KEY_PRESS = 1,
-		KEY_RELEASE = 2
-	};
+	//enum class Type {
+	//	NONE = -1,
+	//	CLOSE = 0,
+	//	KEY_PRESS = 1,
+	//	KEY_RELEASE = 2
+	//};
 
 	enum class Key {
 		None = -1,
@@ -23,11 +23,11 @@ public:
 		Total_Number
 	};
 
-	inline void setType(Type&& _type) { type = _type; }
+	//inline void setType(Type&& _type) { type = _type; }
 	inline void setKey(Key&& _key) { key = _key; }
 
 public:
-	Type type;
+	//Type type;
 	Key key;
 
 private:

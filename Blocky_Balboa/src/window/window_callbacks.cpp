@@ -3,21 +3,19 @@
 #include "window_manager.h"
 #include "../logger.h"
 
-//extern int g_width;
-//extern int g_height;
-
 void Window::setCallbaks()
 {
 	glfwSetErrorCallback(glfw_error_callback);
 	glfwSetWindowSizeCallback(m_WindowID, glfw_window_size_callback);
 	glfwSetKeyCallback(m_WindowID, glfw_key_callback);
+	glfwSetCursorPosCallback(m_WindowID, glfw_cursor_position_callback);
 }
 
-void glfw_error_callback(int error, const char* description) {
+void Window::glfw_error_callback(int error, const char* description) {
 	gl_log_err("GLFW ERROR: code %i msg: %s\n", error, description);
 }
 
-void glfw_window_size_callback(GLFWwindow* window, int width, int height)
+void Window::glfw_window_size_callback(GLFWwindow* window, int width, int height)
 {
 	Window* ptrWindow = static_cast<Window*>(glfwGetWindowUserPointer(window));
 
@@ -26,303 +24,315 @@ void glfw_window_size_callback(GLFWwindow* window, int width, int height)
 	ptrWindow->setSize();
 }
 
-void glfw_key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void Window::glfw_key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	Window* ptrWindow = static_cast<Window*>(glfwGetWindowUserPointer(window));
 
-	using Type = Event::Type;
 	using Key = Event::Key;
 
 	if (action == GLFW_PRESS)
 	{
-		printf("Pressed! ");
-		ptrWindow->inputEvent.setType(Type::KEY_PRESS);
 		switch (key)
 		{
 		case GLFW_KEY_ESCAPE:
-			ptrWindow->inputEvent.setKey(Key::Escape);
+			ptrWindow->isPressed[(uint32_t)Key::Escape] = true;
 			break;
 		case GLFW_KEY_Q:
-			ptrWindow->inputEvent.setKey(Key::Q);
+			ptrWindow->isPressed[(uint32_t)Key::Q] = true;
 			break;
 		case GLFW_KEY_W:
-			ptrWindow->inputEvent.setKey(Key::W);
+			ptrWindow->isPressed[(uint32_t)Key::W] = true;
 			break;
 		case GLFW_KEY_E:
-			ptrWindow->inputEvent.setKey(Key::E);
+			ptrWindow->isPressed[(uint32_t)Key::E] = true;
 			break;
 		case GLFW_KEY_R:
-			ptrWindow->inputEvent.setKey(Key::R);
+			ptrWindow->isPressed[(uint32_t)Key::R] = true;
 			break;
 		case GLFW_KEY_T:
-			ptrWindow->inputEvent.setKey(Key::T);
+			ptrWindow->isPressed[(uint32_t)Key::T] = true;
 			break;
 		case GLFW_KEY_Z:
-			ptrWindow->inputEvent.setKey(Key::Z);
+			ptrWindow->isPressed[(uint32_t)Key::Z] = true;
 			break;
 		case GLFW_KEY_U:
-			ptrWindow->inputEvent.setKey(Key::U);
+			ptrWindow->isPressed[(uint32_t)Key::U] = true;
 			break;
 		case GLFW_KEY_I:
-			ptrWindow->inputEvent.setKey(Key::I);
+			ptrWindow->isPressed[(uint32_t)Key::I] = true;
 			break;
 		case GLFW_KEY_O:
-			ptrWindow->inputEvent.setKey(Key::O);
+			ptrWindow->isPressed[(uint32_t)Key::O] = true;
 			break;
 		case GLFW_KEY_P:
-			ptrWindow->inputEvent.setKey(Key::P);
+			ptrWindow->isPressed[(uint32_t)Key::P] = true;
 			break;
 		case GLFW_KEY_A:
-			ptrWindow->inputEvent.setKey(Key::A);
+			ptrWindow->isPressed[(uint32_t)Key::A] = true;
 			break;
 		case GLFW_KEY_S:
-			ptrWindow->inputEvent.setKey(Key::S);
+			ptrWindow->isPressed[(uint32_t)Key::S] = true;
 			break;
 		case GLFW_KEY_D:
-			ptrWindow->inputEvent.setKey(Key::D);
+			ptrWindow->isPressed[(uint32_t)Key::D] = true;
 			break;
 		case GLFW_KEY_F:
-			ptrWindow->inputEvent.setKey(Key::F);
+			ptrWindow->isPressed[(uint32_t)Key::F] = true;
 			break;
 		case GLFW_KEY_G:
-			ptrWindow->inputEvent.setKey(Key::G);
+			ptrWindow->isPressed[(uint32_t)Key::G] = true;
 			break;
 		case GLFW_KEY_H:
-			ptrWindow->inputEvent.setKey(Key::H);
+			ptrWindow->isPressed[(uint32_t)Key::H] = true;
 			break;
 		case GLFW_KEY_J:
-			ptrWindow->inputEvent.setKey(Key::J);
+			ptrWindow->isPressed[(uint32_t)Key::J] = true;
 			break;
 		case GLFW_KEY_K:
-			ptrWindow->inputEvent.setKey(Key::K);
+			ptrWindow->isPressed[(uint32_t)Key::K] = true;
 			break;
 		case GLFW_KEY_L:
-			ptrWindow->inputEvent.setKey(Key::L);
+			ptrWindow->isPressed[(uint32_t)Key::L] = true;
 			break;
 		case GLFW_KEY_Y:
-			ptrWindow->inputEvent.setKey(Key::Y);
+			ptrWindow->isPressed[(uint32_t)Key::Y] = true;
 			break;
 		case GLFW_KEY_X:
-			ptrWindow->inputEvent.setKey(Key::X);
+			ptrWindow->isPressed[(uint32_t)Key::X] = true;
 			break;
 		case GLFW_KEY_C:
-			ptrWindow->inputEvent.setKey(Key::C);
+			ptrWindow->isPressed[(uint32_t)Key::C] = true;
 			break;
 		case GLFW_KEY_V:
-			ptrWindow->inputEvent.setKey(Key::B);
+			ptrWindow->isPressed[(uint32_t)Key::B] = true;
 			break;
 		case GLFW_KEY_N:
-			ptrWindow->inputEvent.setKey(Key::N);
+			ptrWindow->isPressed[(uint32_t)Key::N] = true;
 			break;
 		case GLFW_KEY_M:
-			ptrWindow->inputEvent.setKey(Key::M);
+			ptrWindow->isPressed[(uint32_t)Key::M] = true;
 			break;
 		case GLFW_KEY_1:
-			ptrWindow->inputEvent.setKey(Key::One);
+			ptrWindow->isPressed[(uint32_t)Key::One] = true;
 			break;
 		case GLFW_KEY_2:
-			ptrWindow->inputEvent.setKey(Key::Two);
+			ptrWindow->isPressed[(uint32_t)Key::Two] = true;
 			break;
 		case GLFW_KEY_3:
-			ptrWindow->inputEvent.setKey(Key::Three);
+			ptrWindow->isPressed[(uint32_t)Key::Three] = true;
 			break;
 		case GLFW_KEY_4:
-			ptrWindow->inputEvent.setKey(Key::Four);
+			ptrWindow->isPressed[(uint32_t)Key::Four] = true;
 			break;
 		case GLFW_KEY_5:
-			ptrWindow->inputEvent.setKey(Key::Five);
+			ptrWindow->isPressed[(uint32_t)Key::Five] = true;
 			break;
 		case GLFW_KEY_6:
-			ptrWindow->inputEvent.setKey(Key::Six);
+			ptrWindow->isPressed[(uint32_t)Key::Six] = true;
 			break;
 		case GLFW_KEY_7:
-			ptrWindow->inputEvent.setKey(Key::Seven);
+			ptrWindow->isPressed[(uint32_t)Key::Seven] = true;
 			break;
 		case GLFW_KEY_8:
-			ptrWindow->inputEvent.setKey(Key::Eight);
+			ptrWindow->isPressed[(uint32_t)Key::Eight] = true;
 			break;
 		case GLFW_KEY_9:
-			ptrWindow->inputEvent.setKey(Key::Nine);
+			ptrWindow->isPressed[(uint32_t)Key::Nine] = true;
 			break;
 		case GLFW_KEY_0:
-			ptrWindow->inputEvent.setKey(Key::Zero);
+			ptrWindow->isPressed[(uint32_t)Key::Zero] = true;
 			break;
 		case GLFW_KEY_ENTER:
-			ptrWindow->inputEvent.setKey(Key::Enter);
+			ptrWindow->isPressed[(uint32_t)Key::Enter] = true;
 			break;
 		case GLFW_KEY_SPACE:
-			ptrWindow->inputEvent.setKey(Key::Space);
+			ptrWindow->isPressed[(uint32_t)Key::Space] = true;
 			break;
 		case GLFW_KEY_LEFT_SHIFT:
-			ptrWindow->inputEvent.setKey(Key::L_shift);
+			ptrWindow->isPressed[(uint32_t)Key::L_shift] = true;
 			break;
 		case GLFW_KEY_LEFT_CONTROL:
-			ptrWindow->inputEvent.setKey(Key::L_ctrl);
+			ptrWindow->isPressed[(uint32_t)Key::L_ctrl] = true;
 			break;
 		case GLFW_KEY_LEFT_ALT:
-			ptrWindow->inputEvent.setKey(Key::L_alt);
+			ptrWindow->isPressed[(uint32_t)Key::L_alt] = true;
 			break;
 		case GLFW_KEY_RIGHT_ALT:
-			ptrWindow->inputEvent.setKey(Key::R_alt);
+			ptrWindow->isPressed[(uint32_t)Key::R_alt] = true;
 			break;
 		case GLFW_KEY_RIGHT_SHIFT:
-			ptrWindow->inputEvent.setKey(Key::R_shift);
+			ptrWindow->isPressed[(uint32_t)Key::R_shift] = true;
 			break;
 		case GLFW_KEY_RIGHT_CONTROL:
-			ptrWindow->inputEvent.setKey(Key::R_ctrl);
+			ptrWindow->isPressed[(uint32_t)Key::R_ctrl] = true;
 			break;
 		case GLFW_KEY_BACKSPACE:
-			ptrWindow->inputEvent.setKey(Key::Backspace);
+			ptrWindow->isPressed[(uint32_t)Key::Backspace] = true;
 			break;
 		default:
-			ptrWindow->inputEvent.setKey(Key::None);
+			//ptrWindow->isPressed[(uint32_t)Key::None] = true;
 			break;
 		}
 	}
 	else if (action == GLFW_RELEASE)
 	{
-		printf("Released! ");
-		ptrWindow->inputEvent.setType(Type::KEY_RELEASE);
 		switch (key)
 		{
 		case GLFW_KEY_ESCAPE:
-			ptrWindow->inputEvent.setKey(Key::Escape);
+			ptrWindow->isPressed[(uint32_t)Key::Escape] = false;
 			break;
 		case GLFW_KEY_Q:
-			ptrWindow->inputEvent.setKey(Key::Q);
+			ptrWindow->isPressed[(uint32_t)Key::Q] = false;
 			break;
 		case GLFW_KEY_W:
-			ptrWindow->inputEvent.setKey(Key::W);
+			ptrWindow->isPressed[(uint32_t)Key::W] = false;
 			break;
 		case GLFW_KEY_E:
-			ptrWindow->inputEvent.setKey(Key::E);
+			ptrWindow->isPressed[(uint32_t)Key::E] = false;
 			break;
 		case GLFW_KEY_R:
-			ptrWindow->inputEvent.setKey(Key::R);
+			ptrWindow->isPressed[(uint32_t)Key::R] = false;
 			break;
 		case GLFW_KEY_T:
-			ptrWindow->inputEvent.setKey(Key::T);
+			ptrWindow->isPressed[(uint32_t)Key::T] = false;
 			break;
 		case GLFW_KEY_Z:
-			ptrWindow->inputEvent.setKey(Key::Z);
+			ptrWindow->isPressed[(uint32_t)Key::Z] = false;
 			break;
 		case GLFW_KEY_U:
-			ptrWindow->inputEvent.setKey(Key::U);
+			ptrWindow->isPressed[(uint32_t)Key::U] = false;
 			break;
 		case GLFW_KEY_I:
-			ptrWindow->inputEvent.setKey(Key::I);
+			ptrWindow->isPressed[(uint32_t)Key::I] = false;
 			break;
 		case GLFW_KEY_O:
-			ptrWindow->inputEvent.setKey(Key::O);
+			ptrWindow->isPressed[(uint32_t)Key::O] = false;
 			break;
 		case GLFW_KEY_P:
-			ptrWindow->inputEvent.setKey(Key::P);
+			ptrWindow->isPressed[(uint32_t)Key::P] = false;
 			break;
 		case GLFW_KEY_A:
-			ptrWindow->inputEvent.setKey(Key::A);
+			ptrWindow->isPressed[(uint32_t)Key::A] = false;
 			break;
 		case GLFW_KEY_S:
-			ptrWindow->inputEvent.setKey(Key::S);
+			ptrWindow->isPressed[(uint32_t)Key::S] = false;
 			break;
 		case GLFW_KEY_D:
-			ptrWindow->inputEvent.setKey(Key::D);
+			ptrWindow->isPressed[(uint32_t)Key::D] = false;
 			break;
 		case GLFW_KEY_F:
-			ptrWindow->inputEvent.setKey(Key::F);
+			ptrWindow->isPressed[(uint32_t)Key::F] = false;
 			break;
 		case GLFW_KEY_G:
-			ptrWindow->inputEvent.setKey(Key::G);
+			ptrWindow->isPressed[(uint32_t)Key::G] = false;
 			break;
 		case GLFW_KEY_H:
-			ptrWindow->inputEvent.setKey(Key::H);
+			ptrWindow->isPressed[(uint32_t)Key::H] = false;
 			break;
 		case GLFW_KEY_J:
-			ptrWindow->inputEvent.setKey(Key::J);
+			ptrWindow->isPressed[(uint32_t)Key::J] = false;
 			break;
 		case GLFW_KEY_K:
-			ptrWindow->inputEvent.setKey(Key::K);
+			ptrWindow->isPressed[(uint32_t)Key::K] = false;
 			break;
 		case GLFW_KEY_L:
-			ptrWindow->inputEvent.setKey(Key::L);
+			ptrWindow->isPressed[(uint32_t)Key::L] = false;
 			break;
 		case GLFW_KEY_Y:
-			ptrWindow->inputEvent.setKey(Key::Y);
+			ptrWindow->isPressed[(uint32_t)Key::Y] = false;
 			break;
 		case GLFW_KEY_X:
-			ptrWindow->inputEvent.setKey(Key::X);
+			ptrWindow->isPressed[(uint32_t)Key::X] = false;
 			break;
 		case GLFW_KEY_C:
-			ptrWindow->inputEvent.setKey(Key::C);
+			ptrWindow->isPressed[(uint32_t)Key::C] = false;
 			break;
 		case GLFW_KEY_V:
-			ptrWindow->inputEvent.setKey(Key::B);
+			ptrWindow->isPressed[(uint32_t)Key::B] = false;
 			break;
 		case GLFW_KEY_N:
-			ptrWindow->inputEvent.setKey(Key::N);
+			ptrWindow->isPressed[(uint32_t)Key::N] = false;
 			break;
 		case GLFW_KEY_M:
-			ptrWindow->inputEvent.setKey(Key::M);
+			ptrWindow->isPressed[(uint32_t)Key::M] = false;
 			break;
 		case GLFW_KEY_1:
-			ptrWindow->inputEvent.setKey(Key::One);
+			ptrWindow->isPressed[(uint32_t)Key::One] = false;
 			break;
 		case GLFW_KEY_2:
-			ptrWindow->inputEvent.setKey(Key::Two);
+			ptrWindow->isPressed[(uint32_t)Key::Two] = false;
 			break;
 		case GLFW_KEY_3:
-			ptrWindow->inputEvent.setKey(Key::Three);
+			ptrWindow->isPressed[(uint32_t)Key::Three] = false;
 			break;
 		case GLFW_KEY_4:
-			ptrWindow->inputEvent.setKey(Key::Four);
+			ptrWindow->isPressed[(uint32_t)Key::Four] = false;
 			break;
 		case GLFW_KEY_5:
-			ptrWindow->inputEvent.setKey(Key::Five);
+			ptrWindow->isPressed[(uint32_t)Key::Five] = false;
 			break;
 		case GLFW_KEY_6:
-			ptrWindow->inputEvent.setKey(Key::Six);
+			ptrWindow->isPressed[(uint32_t)Key::Six] = false;
 			break;
 		case GLFW_KEY_7:
-			ptrWindow->inputEvent.setKey(Key::Seven);
+			ptrWindow->isPressed[(uint32_t)Key::Seven] = false;
 			break;
 		case GLFW_KEY_8:
-			ptrWindow->inputEvent.setKey(Key::Eight);
+			ptrWindow->isPressed[(uint32_t)Key::Eight] = false;
 			break;
 		case GLFW_KEY_9:
-			ptrWindow->inputEvent.setKey(Key::Nine);
+			ptrWindow->isPressed[(uint32_t)Key::Nine] = false;
 			break;
 		case GLFW_KEY_0:
-			ptrWindow->inputEvent.setKey(Key::Zero);
+			ptrWindow->isPressed[(uint32_t)Key::Zero] = false;
 			break;
 		case GLFW_KEY_ENTER:
-			ptrWindow->inputEvent.setKey(Key::Enter);
+			ptrWindow->isPressed[(uint32_t)Key::Enter] = false;
 			break;
 		case GLFW_KEY_SPACE:
-			ptrWindow->inputEvent.setKey(Key::Space);
+			ptrWindow->isPressed[(uint32_t)Key::Space] = false;
 			break;
 		case GLFW_KEY_LEFT_SHIFT:
-			ptrWindow->inputEvent.setKey(Key::L_shift);
+			ptrWindow->isPressed[(uint32_t)Key::L_shift] = false;
 			break;
 		case GLFW_KEY_LEFT_CONTROL:
-			ptrWindow->inputEvent.setKey(Key::L_ctrl);
+			ptrWindow->isPressed[(uint32_t)Key::L_ctrl] = false;
 			break;
 		case GLFW_KEY_LEFT_ALT:
-			ptrWindow->inputEvent.setKey(Key::L_alt);
+			ptrWindow->isPressed[(uint32_t)Key::L_alt] = false;
 			break;
 		case GLFW_KEY_RIGHT_ALT:
-			ptrWindow->inputEvent.setKey(Key::R_alt);
+			ptrWindow->isPressed[(uint32_t)Key::R_alt] = false;
 			break;
 		case GLFW_KEY_RIGHT_SHIFT:
-			ptrWindow->inputEvent.setKey(Key::R_shift);
+			ptrWindow->isPressed[(uint32_t)Key::R_shift] = false;
 			break;
 		case GLFW_KEY_RIGHT_CONTROL:
-			ptrWindow->inputEvent.setKey(Key::R_ctrl);
+			ptrWindow->isPressed[(uint32_t)Key::R_ctrl] = false;
 			break;
 		case GLFW_KEY_BACKSPACE:
-			ptrWindow->inputEvent.setKey(Key::Backspace);
+			ptrWindow->isPressed[(uint32_t)Key::Backspace] = false;
 			break;
 		default:
-			ptrWindow->inputEvent.setKey(Key::None);
+			//ptrWindow->isPressed[(uint32_t)Key::None] = false;
 			break;
 		}
 	}
+}
+
+void Window::glfw_cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	Window* ptrWindow = static_cast<Window*>(glfwGetWindowUserPointer(window));
+
+	double old_x_pos = ptrWindow->m_width / 2.0f;
+	double old_y_pos = ptrWindow->m_height / 2.0f;
+
+	ptrWindow->cursor_dxpos = xpos - old_x_pos;
+	ptrWindow->cursor_dypos = ypos - old_y_pos;
+
+	glfwSetCursorPos(
+		ptrWindow->m_WindowID,
+		ptrWindow->m_width / 2.0f,
+		ptrWindow->m_height / 2.0f
+	);
 }

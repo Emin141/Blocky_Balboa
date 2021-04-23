@@ -101,7 +101,7 @@ void Window::init()
 	// start GL context and O/S window using the GLFW helper library
 	gl_log("Starting GLFW\n%s\n", glfwGetVersionString());
 
-	glfwSetWindowUserPointer(m_WindowID, this);
+	glfwSetWindowUserPointer(m_WindowID, this); //wtf?
 
 	if (!glfwInit()) {
 		fprintf(stderr, "ERROR: could not start GLFW3\n");
@@ -145,4 +145,9 @@ void Window::init()
 	glfwSwapInterval(1);
 
 	glfwSetWindowUserPointer(m_WindowID, this);
+
+	for (auto i : isPressed) { i = false; }
+
+	glfwSetInputMode(m_WindowID, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+	glfwSetCursorPos(m_WindowID, m_width / 2.0f, m_height / 2.0f);
 }

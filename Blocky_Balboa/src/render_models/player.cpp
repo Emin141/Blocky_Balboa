@@ -32,6 +32,7 @@ Player::Player()
 
 	lin_speed = 20.0f;
 	rot_speed = 4.0f;
+	mouse_sensitivity = PI_half/6.0f;
 }
 
 Player::~Player()
@@ -132,6 +133,36 @@ void Player::yawLeft()
 	m_right = m_forward.CrossMultiply(m_up);
 
 	m_camera->yaw = m_euler_angle.y + PI_half;
+	updateCameraPosition();
+	updateToShader();
+}
+
+void Player::yaw(float dx)
+{
+	m_euler_angle.y += g_deltaTime * dx * mouse_sensitivity;
+	m_euler_angle.y = fmodf(m_euler_angle.y, _2PI);
+	m_forward = m_euler_angle.ToVector();
+	m_forward.y = 0;
+	m_forward.normalize();
+	m_right = m_forward.CrossMultiply(m_up);
+
+	m_camera->yaw = m_euler_angle.y + PI_half;
+	updateCameraPosition();
+	updateToShader();
+}
+
+void Player::pitch(float dy)
+{
+	m_euler_angle.p -= g_deltaTime * dy * mouse_sensitivity;
+	if (m_euler_angle.p < - (PI_half-0.025f)) m_euler_angle.p = -(PI_half-0.025f);
+	if (m_euler_angle.p > 0.0f) m_euler_angle.p = 0.0f;
+	
+	m_forward = m_euler_angle.ToVector();
+	m_forward.y = 0;
+	m_forward.normalize();
+	m_right = m_forward.CrossMultiply(m_up);
+
+	m_camera->pitch = -1.0f * m_euler_angle.p;
 	updateCameraPosition();
 	updateToShader();
 }

@@ -4,6 +4,7 @@
 #include "../math/cece_vector3.h"
 #include "mesh.h"
 #include "../shader_manager.h"
+#include "../math/cece_matrix4.h"
 
 class Entity : public IRenderable
 {
@@ -14,6 +15,8 @@ public:
 	~Entity();
 
 	void draw();
+	void setMVP(const cece::Matrix4& mvp);
+	void updateMVP(const cece::Matrix4& mvp);
 	void setWorldPosition(const cece::Vector3& world_position) const;
 	inline ShaderProgram* accessProgram() const { return m_Program; }
 
@@ -25,4 +28,3 @@ private:
 	GLuint m_number_of_faces;
 	GLuint m_vao;
 };
-
