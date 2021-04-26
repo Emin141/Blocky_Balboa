@@ -177,7 +177,8 @@
     <ClCompile Include="src\math\cece_point.cpp" />
     <ClCompile Include="src\math\cece_vector3.cpp" />
     <ClCompile Include="src\math\cece_vector4.cpp" />
-    <ClCompile Include="src\logger.cpp" />
+    <ClCompile Include="src\render_models\texture.cpp" />
+    <ClCompile Include="src\shader_manager\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\render_models\blocky.cpp" />
     <ClCompile Include="src\render_models\player.cpp" />
@@ -185,8 +186,8 @@
     <ClCompile Include="src\render_models\mesh.cpp" />
     <ClCompile Include="src\window\event_class.cpp" />
     <ClCompile Include="src\window\window_callbacks.cpp" />
-    <ClCompile Include="src\shader_manager.cpp" />
-    <ClCompile Include="src\shader_parser.cpp" />
+    <ClCompile Include="src\shader_manager\shader_manager.cpp" />
+    <ClCompile Include="src\shader_manager\shader_parser.cpp" />
     <ClCompile Include="src\window\window_manager.cpp" />
     <ClCompile Include="src\render_models\terrain.cpp" />
   </ItemGroup>
@@ -200,15 +201,16 @@
     <ClInclude Include="src\math\cece_point.h" />
     <ClInclude Include="src\math\cece_vector3.h" />
     <ClInclude Include="src\math\cece_vector4.h" />
-    <ClInclude Include="src\logger.h" />
+    <ClInclude Include="src\render_models\texture.h" />
+    <ClInclude Include="src\shader_manager\logger.h" />
     <ClInclude Include="src\render_models\blocky.h" />
     <ClInclude Include="src\render_models\player.h" />
     <ClInclude Include="src\render_models\entity.h" />
     <ClInclude Include="src\render_models\IRenderable.h" />
     <ClInclude Include="src\render_models\mesh.h" />
     <ClInclude Include="src\render_models\terrain.h" />
-    <ClInclude Include="src\shader_manager.h" />
-    <ClInclude Include="src\shader_parser.h" />
+    <ClInclude Include="src\shader_manager\shader_manager.h" />
+    <ClInclude Include="src\shader_manager\shader_parser.h" />
     <ClInclude Include="src\window\event_class.h" />
     <ClInclude Include="src\window\window_manager.h" />
   </ItemGroup>

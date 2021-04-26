@@ -21,16 +21,16 @@
     <None Include="res\shaders\terrain.vert" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\logger.cpp">
+    <ClCompile Include="src\shader_manager\logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\shader_manager.cpp">
+    <ClCompile Include="src\shader_manager\shader_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\shader_parser.cpp">
+    <ClCompile Include="src\shader_manager\shader_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\window\window_manager.cpp">
@@ -81,15 +81,18 @@
     <ClCompile Include="src\window\event_class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\render_models\texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\logger.h">
+    <ClInclude Include="src\shader_manager\logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\shader_manager.h">
+    <ClInclude Include="src\shader_manager\shader_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\shader_parser.h">
+    <ClInclude Include="src\shader_manager\shader_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\window\window_manager.h">
@@ -141,6 +144,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\window\event_class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render_models\texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

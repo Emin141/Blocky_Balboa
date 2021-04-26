@@ -1,7 +1,7 @@
 #pragma once
 
 #include <GL/glew.h>
-#include "../shader_manager.h"
+#include "../shader_manager/shader_manager.h"
 #include "../math/cece_vector3.h"
 
 class Blocky

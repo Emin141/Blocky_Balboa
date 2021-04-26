@@ -3,7 +3,7 @@
 #include "IRenderable.h"
 #include "../math/cece_vector3.h"
 #include "mesh.h"
-#include "../shader_manager.h"
+#include "../shader_manager/shader_manager.h"
 #include "../math/cece_matrix4.h"
 
 class Entity : public IRenderable

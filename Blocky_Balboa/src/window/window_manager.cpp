@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <Windows.h>
 #include "window_manager.h"
-#include "../logger.h"
+#include "../shader_manager/logger.h"
 
 extern float g_deltaTime;
 

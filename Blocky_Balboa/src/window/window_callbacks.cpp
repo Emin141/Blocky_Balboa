@@ -1,7 +1,7 @@
 #include <cstdio>
 
 #include "window_manager.h"
-#include "../logger.h"
+#include "../shader_manager/logger.h"
 
 void Window::setCallbaks()
 {
