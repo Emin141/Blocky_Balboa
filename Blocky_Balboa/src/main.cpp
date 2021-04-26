@@ -1,15 +1,11 @@
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
 #include "window/window_manager.h"
-#include "cece_clock.h"
 #include "cece_math.h"
 #include "render_models/terrain.h"
-#include "render_models/blocky.h"
 #include "render_models/player.h"
 #include "render_models/entity.h"
 
-float g_deltaTime;
+float g_delta_time;
+cece::Matrix4 g_MVP;
 
 //The MVP matrix from the camera attached to the player entity
 //should probably be a global variable, or external to the player instance.
@@ -17,30 +13,36 @@ float g_deltaTime;
 //without calling the getter and uniform for each in the loop
 
 int main() {
-	ShowConsole();
+	ShowConsole(false);
 	Window window;
+	window.setFaceCullingCCW();
 
 	Player player;
+	g_MVP = player.getMVP();
 
-	Entity icososphere(
+	Entity donut(
 		"C:/users/emin1/Documents/3D models/donut.obj",
 		"C:/users/emin1/Documents/3D models/basic.vert",
 		"C:/users/emin1/Documents/3D models/basic.frag"
 	);
-	icososphere.setMVP(player.getMVP());
-	icososphere.setWorldPosition({ 0.0f, 1.0f, -10.f });
+	donut.setMVP(g_MVP);
+	donut.setWorldPosition({ 0.0f, 1.0f, -10.f });
 
-	Blocky blocky_1;
-	blocky_1.accessProgram()->setUniform("mvp", player.getMVP().c_arr());
-	blocky_1.setWorldPosition({ 3.0f, 0.0f, -10.0f });
+	Entity donut2(
+		"C:/users/emin1/Documents/3D models/donut.obj",
+		"C:/users/emin1/Documents/3D models/basic.vert",
+		"C:/users/emin1/Documents/3D models/basic.frag"
+	);
+	donut2.setMVP(g_MVP);
+	donut2.setWorldPosition({ 5.0f, 1.0f, -12.f });
 
 	Terrain terrain;
-	terrain.accessProgram()->setUniform("mvp", player.getMVP().c_arr());
+	terrain.accessProgram()->setUniform("mvp", g_MVP.c_arr());
 
 	while (window.isOpen()) {
 
 		if (window.isPressed[(uint32_t)Event::Key::Escape]) window.close();
-		
+
 		window.prepareDraw();
 
 		//Event handling should be done as an array of 
@@ -59,18 +61,19 @@ int main() {
 		if (window.isPressed[(uint32_t)Event::Key::Space]) player.moveUp();
 		if (window.isPressed[(uint32_t)Event::Key::L_shift]) player.moveDown();
 
-		terrain.accessProgram()->updateUniform("mvp", player.getMVP().c_arr());
+		g_MVP = player.getMVP();
+
+		terrain.accessProgram()->updateUniform("mvp", g_MVP.c_arr());
 		terrain.draw();
 
-		icososphere.updateMVP(player.getMVP());
-		icososphere.draw();
-
-		blocky_1.accessProgram()->updateUniform("mvp", player.getMVP().c_arr());
-		blocky_1.draw();
+		donut.updateMVP(g_MVP);
+		donut.draw();
+		donut2.updateMVP(g_MVP);
+		donut2.draw();
 
 		player.draw();
 
-		window.swapBuffers();	
+		window.swapBuffers();
 	}
 	return 0;
 }

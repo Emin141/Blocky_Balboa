@@ -5,7 +5,7 @@
 
 using namespace cece;
 static const float PI = 4.0f * atanf(1);
-extern float g_deltaTime;
+extern float g_delta_time;
 float speed = 20.0f;
 float rot_speed = 115.0f;
 
@@ -53,37 +53,37 @@ Camera::Camera()
 
 //void Camera::moveForward()
 //{
-//	position += forward * g_deltaTime * speed;
+//	position += forward * g_delta_time * speed;
 //}
 //
 //void Camera::moveBackward()
 //{
-//	position -= forward * g_deltaTime * speed;
+//	position -= forward * g_delta_time * speed;
 //}
 //
 //void Camera::moveRight()
 //{
-//	position += right * g_deltaTime * speed;
+//	position += right * g_delta_time * speed;
 //}
 //
 //void Camera::moveLeft()
 //{
-//	position -= right * g_deltaTime * speed;
+//	position -= right * g_delta_time * speed;
 //}
 //
 //void Camera::moveUp()
 //{
-//	position += up * g_deltaTime * speed;
+//	position += up * g_delta_time * speed;
 //}
 //
 //void Camera::moveDown()
 //{
-//	position -= up * g_deltaTime * speed;
+//	position -= up * g_delta_time * speed;
 //}
 //
 //void Camera::yawRight()
 //{
-//	yaw += g_deltaTime * rot_speed;
+//	yaw += g_delta_time * rot_speed;
 //	yaw = fmodf(yaw, 360.0f);
 //	forward = {
 //		cosf(PI / 180 * yaw - PI / 2),
@@ -95,7 +95,7 @@ Camera::Camera()
 //
 //void Camera::yawLeft()
 //{
-//	yaw -= g_deltaTime * rot_speed;
+//	yaw -= g_delta_time * rot_speed;
 //	yaw = fmodf(yaw, 360.0f);
 //	forward = {
 //		cosf(PI / 180 * yaw - PI / 2),
@@ -107,12 +107,12 @@ Camera::Camera()
 //
 //void Camera::pitchUp()
 //{
-//	pitch += g_deltaTime * rot_speed;
+//	pitch += g_delta_time * rot_speed;
 //}
 //
 //void Camera::pitchDown()
 //{
-//	pitch -= g_deltaTime * rot_speed;
+//	pitch -= g_delta_time * rot_speed;
 //}
 
 Matrix4 Camera::getMVP()
@@ -136,7 +136,7 @@ Matrix4 Camera::ProjectionMatrix()
 
 	constexpr float FOV = 45.f;
 	constexpr float aspect_ratio = 16.0f / 9.0f;
-	constexpr float far = 100.0f;
+	constexpr float far = 500.0f;
 	constexpr float near = 0.1f;
 
 	float cot = 1.0f / tanf(PI / 180.0f * FOV / 2.0f);

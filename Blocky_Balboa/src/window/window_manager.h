@@ -36,7 +36,8 @@ public:
 	inline GLFWwindow* getWindowID() { return m_WindowID; }
 
 	//looping functionality
-	void setFaceCullingCW(bool set = true);
+	void setFaceCullingCW() const;
+	void setFaceCullingCCW() const;
 	void prepareDraw();
 	void swapBuffers();	
 	inline bool isOpen() { return !glfwWindowShouldClose(m_WindowID); };

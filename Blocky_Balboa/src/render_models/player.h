@@ -2,15 +2,16 @@
 
 #include <cstdlib>
 
-#include "blocky.h"
+//#include "blocky.h"
+#include "entity.h"
 #include "../camera/cece_camera.h"
 #include "../math/cece_vector3.h"
 #include "../math/cece_matrix4.h"
 #include "../math/cece_e_angle.h"
 
-extern float g_deltaTime;
+extern float g_delta_time;
 
-class Player : public Blocky
+class Player //: public Entity
 {
 public:
 	Player();
@@ -30,7 +31,11 @@ public:
 	void yaw(float dx);
 	void pitch(float dy);
 
+	void draw() const;
+
 private:
+	Entity* m_entity;
+
 	cece::Vector3 m_position;
 	cece::Vector3 m_forward, m_up, m_right;
 	cece::Camera* m_camera;

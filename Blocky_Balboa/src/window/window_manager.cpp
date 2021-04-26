@@ -5,7 +5,7 @@
 #include "window_manager.h"
 #include "../shader_manager/logger.h"
 
-extern float g_deltaTime;
+extern float g_delta_time;
 
 Window::Window()
 {
@@ -29,11 +29,18 @@ void Window::updateFPSCounter() {
 	frame_count++;
 }
 
-void Window::setFaceCullingCW(bool set)
+void Window::setFaceCullingCW() const
 {
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CW);
+}
+
+void Window::setFaceCullingCCW() const
+{
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	glFrontFace(GL_CCW);
 }
 
 void Window::swapBuffers()
@@ -82,7 +89,7 @@ void Window::clear(Color color) {
 
 void Window::prepareDraw()
 {
-	g_deltaTime = m_clock.deltaTime();
+	g_delta_time = m_clock.deltaTime();
 
 	updateFPSCounter();
 	setSize();

@@ -163,6 +163,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="res\shaders\player_shader.frag" />
+    <None Include="res\shaders\player_shader.vert" />
     <None Include="res\shaders\terrain.frag" />
     <None Include="res\shaders\terrain.vert" />
     <None Include="res\shaders\blocky_balboa.frag" />
@@ -184,6 +186,7 @@
     <ClCompile Include="src\render_models\player.cpp" />
     <ClCompile Include="src\render_models\entity.cpp" />
     <ClCompile Include="src\render_models\mesh.cpp" />
+    <ClCompile Include="src\stb_image\stb_image.cpp" />
     <ClCompile Include="src\window\event_class.cpp" />
     <ClCompile Include="src\window\window_callbacks.cpp" />
     <ClCompile Include="src\shader_manager\shader_manager.cpp" />
@@ -211,8 +214,13 @@
     <ClInclude Include="src\render_models\terrain.h" />
     <ClInclude Include="src\shader_manager\shader_manager.h" />
     <ClInclude Include="src\shader_manager\shader_parser.h" />
+    <ClInclude Include="src\stb_image\stb_image.h" />
     <ClInclude Include="src\window\event_class.h" />
     <ClInclude Include="src\window\window_manager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\textures\parsing_test.bmp" />
+    <Image Include="res\textures\parsing_test.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

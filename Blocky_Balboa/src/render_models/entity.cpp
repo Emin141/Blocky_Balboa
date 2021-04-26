@@ -76,10 +76,10 @@ void Entity::draw()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_index_buffer_ID);
 
 	//the points are for debug purposes
-	glPointSize(1);
-	glDrawElements(GL_POINTS, m_number_of_faces, GL_UNSIGNED_INT, NULL);
+	//glPointSize(1);
+	//glDrawElements(GL_POINTS, m_number_of_faces, GL_UNSIGNED_INT, NULL);
 	
-	glDrawElements(GL_LINE_STRIP, m_number_of_faces, GL_UNSIGNED_INT, NULL);
+	glDrawElements(GL_TRIANGLES, m_number_of_faces, GL_UNSIGNED_INT, NULL);
 
 	glUseProgram(0);
 	glBindVertexArray(0);
