@@ -1,8 +1,8 @@
 #pragma once
 
 #include <GL/glew.h>
-#include "../shader_manager/shader_manager.h"
-#include "../math/cece_vector3.h"
+#include "../opengl_classes/shader_class.h"
+#include "../cece_math/cece_vector3.h"
 
 class Blocky
 {
@@ -10,11 +10,11 @@ public:
 	Blocky();
 	~Blocky();
 	void setWorldPosition(const cece::Vector3& world_position) const;
- 	inline ShaderProgram* accessProgram() const { return m_Program; };
+ 	inline Shader* accessProgram() const { return m_Program; };
 	void draw() const;
 
 protected:
-	ShaderProgram* m_Program;
+	Shader* m_Program;
 
 private:
 	GLuint m_vertex_buffer_ID;

@@ -1,29 +1,35 @@
+#include <iostream>
+
 #include "entity.h"
 
-#include "../math/cece_matrix4.h"
+#include "../cece_math/cece_matrix4.h"
 
 Entity::Entity(const std::string& mesh_path, const std::string& v_shader_path,
 	const std::string& f_shader_path)
 {
+	//creating shader from source
+	m_Program = new Shader(v_shader_path, f_shader_path);
+	m_Program->Activate();
+	m_Program->setUniform("model_matrix", cece::createIdentityMatrix().c_arr());
+	setMVP();
+
+	//creating VAO
+	m_vao.Bind();
+
+#define MESH_LOADING_WORKS
+#ifdef MESH_LOADING_WORKS
+	//loading vbo and ebo data from mesh file
 	m_Mesh = new Mesh(mesh_path);
 
-	//Binding vertex (positions) buffer
+	//Binding vertex buffer
 	size_t vertex_positions_size = m_Mesh->getVertexPositions().size();
-	float* vertex_positions = new float[vertex_positions_size];
+	GLfloat* vertex_positions = new float[vertex_positions_size];
 	for (int i = 0; i < vertex_positions_size; i++)
 	{
 		vertex_positions[i] = m_Mesh->getVertexPositions()[i];
 	}
-	glGenBuffers(1, &m_vertex_buffer_ID);
-	glBindBuffer(GL_ARRAY_BUFFER, m_vertex_buffer_ID);
-	glBufferData(GL_ARRAY_BUFFER, vertex_positions_size * sizeof(float),
-		(void*)vertex_positions, GL_STATIC_DRAW);
-	delete[] vertex_positions;
-
-	//Binding VAO
-	glGenVertexArrays(1, &m_vao);
-	glBindVertexArray(m_vao);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, NULL, NULL);
+	m_vbo = VBO(vertex_positions, vertex_positions_size * sizeof(float));
+	//std::cout << vertex_positions_size << " " << sizeof(float) * vertex_positions_size;
 
 	//Binding index buffer
 	size_t vertex_indices_size = m_Mesh->getVertexIndices().size();
@@ -33,27 +39,57 @@ Entity::Entity(const std::string& mesh_path, const std::string& v_shader_path,
 		vertex_indices[i] = m_Mesh->getVertexIndices()[i] - 1;
 		//the -1 is because .obj files count from 1, not 0
 	}
-	glGenBuffers(1, &m_index_buffer_ID);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_index_buffer_ID);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, vertex_indices_size * sizeof(GLuint),
-		(void*)vertex_indices, GL_STATIC_DRAW);
-	delete[] vertex_indices;
+	m_ebo = EBO(vertex_indices, vertex_indices_size * sizeof(unsigned int));
+
+	m_vbo.Bind();
+	m_ebo.Bind();
+
+	//setting the attribute
+	m_vao.LinkAttrib(m_vbo, 0, 3, GL_FLOAT, 3 * sizeof(float), (void*)0);
 
 	//acquiring number of faces
-	//coincides to be the number of elements in the index buffer
 	m_number_of_faces = vertex_indices_size;
 
-	//clearing mesh data, no longer used
+	//clearing data, no longer used
+	delete[] vertex_positions;
+	delete[] vertex_indices;
 	delete m_Mesh;
 
-	glEnableVertexAttribArray(0);
+#else
 
-	Shader vs(Shader::Type::VERTEX, v_shader_path);
-	Shader fs(Shader::Type::FRAGMENT, f_shader_path);
+	GLfloat vertices[] =
+	{ //     COORDINATES   
+		-0.5f, 0.0f,  0.5f,
+		-0.5f, 0.0f, -0.5f,
+		 0.5f, 0.0f, -0.5f,
+		 0.5f, 0.0f,  0.5f,
+		 0.0f, 0.8f,  0.0f
+	};
 
-	m_Program = new ShaderProgram(vs, fs);
-	m_Program->useProgram();
-	m_Program->setUniform("model_matrix", cece::createIdentityMatrix().c_arr());
+	// Indices for vertices order
+	GLuint indices[] =
+	{
+		0, 1, 2,
+		0, 2, 3,
+		0, 1, 4,
+		1, 2, 4,
+		2, 3, 4,
+		3, 0, 4
+	};
+
+	m_vbo = VBO(vertices, sizeof(vertices));
+	m_ebo = EBO(indices, sizeof(indices));
+
+	m_vbo.Bind();
+	m_ebo.Bind();
+
+	m_vao.LinkAttrib(m_vbo, 0, 3, GL_FLOAT, 3 * sizeof(float), (void*)0);
+	m_number_of_faces = 3 * sizeof(indices);
+#endif
+	//unbinding everything
+	m_vao.Unbind();
+	m_vbo.Unbind();
+	m_ebo.Unbind();
 }
 
 Entity::~Entity()
@@ -63,35 +99,33 @@ Entity::~Entity()
 
 void Entity::setWorldPosition(const cece::Vector3& world_position) const
 {
-	m_Program->setUniform("model_matrix",
-		(cece::createScalingMatrix(3.0f) *
-			cece::createTranslationMatrix(world_position)).c_arr());
+	m_Program->setUniform(
+		"model_matrix",
+		(cece::createScalingMatrix(3.0f) * cece::createTranslationMatrix(world_position)).c_arr()
+	);
 }
 
 void Entity::draw()
 {
-	m_Program->useProgram();
+	m_Program->Activate();
+	updateMVP();
 
-	glBindVertexArray(m_vao);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_index_buffer_ID);
+	m_ebo.Bind();
+	m_vao.Bind();
 
-	//the points are for debug purposes
-	//glPointSize(1);
-	//glDrawElements(GL_POINTS, m_number_of_faces, GL_UNSIGNED_INT, NULL);
-	
 	glDrawElements(GL_TRIANGLES, m_number_of_faces, GL_UNSIGNED_INT, NULL);
 
 	glUseProgram(0);
-	glBindVertexArray(0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	m_vao.Unbind();
+	m_ebo.Unbind();
 }
 
-void Entity::setMVP(const cece::Matrix4& mvp)
+void Entity::setMVP() const
 {
-	m_Program->setUniform("mvp", mvp.c_arr());
+	m_Program->setUniform("mvp", g_MVP.c_arr());
 }
 
-void Entity::updateMVP(const cece::Matrix4& mvp)
+void Entity::updateMVP() const
 {
-	m_Program->updateUniform("mvp", mvp.c_arr());
+	m_Program->updateUniform("mvp", g_MVP.c_arr());
 }

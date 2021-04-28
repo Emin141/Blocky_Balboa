@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdlib>
-#include "../math/cece_vector3.h"
-#include "../math/cece_matrix4.h"
+#include "../cece_math/cece_vector3.h"
+#include "../cece_math/cece_matrix4.h"
 
 namespace cece {
 	//Vector3 unit_distance(const Vector3& from, const Vector3& to);

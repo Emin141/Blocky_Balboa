@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../math/cece_vector3.h"
-#include "../math/cece_e_angle.h"
-#include "../math/cece_matrix4.h"
+#include "../cece_math/cece_vector3.h"
+#include "../cece_math/cece_e_angle.h"
+#include "../cece_math/cece_matrix4.h"
 
 namespace cece {
 

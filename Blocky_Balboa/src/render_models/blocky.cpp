@@ -1,21 +1,10 @@
 #include "blocky.h"
-#include "../math/cece_matrix4.h"
-#include "../stb_image/stb_image.h"
+#include "../cece_math/cece_matrix4.h"
+#include "../stb/stb_image.h"
 
 
 Blocky::Blocky()
 {
-	//GLfloat vertex_data[] = {
-	//		//positions				 //colors
-	//	-1.0f, -1.0f,  1.0f,      1.0f, 0.0f, 0.0f,
-	//	 1.0f, -1.0f,  1.0f,	  0.0f, 1.0f, 0.0f,
-	//	 1.0f,  1.0f,  1.0f,	  0.0f, 0.0f, 1.0f,
-	//	-1.0f,  1.0f,  1.0f,	  1.0f, 1.0f, 0.0f,
-	//	-1.0f,  1.0f, -1.0f,	  1.0f, 0.0f, 1.0f,
-	//	-1.0f, -1.0f, -1.0f,	  0.0f, 1.0f, 1.0f,
-	//	 1.0f,  1.0f, -1.0f,	  1.0f, 1.0f, 1.0f,
-	//	 1.0f, -1.0f, -1.0f,	  0.0f, 0.0f, 0.0f
-	//};
 
 	GLfloat vertex_data[] = {
 		//positions				  //colors               //tex_coords
@@ -49,7 +38,7 @@ Blocky::Blocky()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_data), vertex_data, GL_STATIC_DRAW);
 
 	glGenTextures(1, &m_texture_ID);
-	glActiveTexture(GL_TEXTURE1);
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, m_texture_ID);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
@@ -87,12 +76,9 @@ Blocky::Blocky()
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
 
-	Shader vs(Shader::Type::VERTEX, "./res/shaders/blocky_balboa.vert");
-	Shader fs(Shader::Type::FRAGMENT, "./res/shaders/blocky_balboa.frag");
+	m_Program = new Shader("./res/shaders/blocky_balboa.vert", "./res/shaders/blocky_balboa.frag");
 
-	m_Program = new ShaderProgram(vs, fs);
-
-	m_Program->useProgram();
+	m_Program->Activate();
 	m_Program->setUniform("model_matrix", cece::createIdentityMatrix().c_arr());
 }
 
@@ -116,16 +102,16 @@ void Blocky::setWorldPosition(const cece::Vector3& world_position) const
 
 void Blocky::bind() const
 {
+	m_Program->Activate();
 	glBindTexture(GL_TEXTURE_2D, m_texture_ID);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_index_buffer_ID);
 	glBindVertexArray(m_vao_ID);
-	m_Program->useProgram();
 }
 
 void Blocky::unbind() const
 {
-	glBindTexture(GL_TEXTURE_2D, -1);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, -1);
-	glBindVertexArray(-1);
-	glUseProgram(-1);
+	glUseProgram(0);
+	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }

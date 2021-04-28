@@ -1,5 +1,5 @@
 #include "terrain.h"
-#include "../stb_image/stb_image.h"
+#include "../stb/stb_image.h"
 
 Terrain::Terrain()
 {
@@ -54,12 +54,9 @@ Terrain::Terrain()
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 
-	Shader vs(Shader::Type::VERTEX, "./res/shaders/terrain.vert");
-	Shader fs(Shader::Type::FRAGMENT, "./res/shaders/terrain.frag");
+	m_Program = new Shader("./res/shaders/terrain.vert", "./res/shaders/terrain.frag");
 
-	m_Program = new ShaderProgram(vs, fs);
-
-	m_Program->useProgram();
+	m_Program->Activate();
 }
 
 Terrain::~Terrain()
@@ -80,7 +77,7 @@ void Terrain::bind() const
 	glBindTexture(GL_TEXTURE_2D, m_texture_ID);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_index_buffer_ID);
 	glBindVertexArray(m_vao_ID);
-	m_Program->useProgram();
+	m_Program->Activate();
 }
 
 void Terrain::unbind() const

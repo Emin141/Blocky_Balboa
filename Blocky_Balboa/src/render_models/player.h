@@ -4,10 +4,10 @@
 
 //#include "blocky.h"
 #include "entity.h"
-#include "../camera/cece_camera.h"
-#include "../math/cece_vector3.h"
-#include "../math/cece_matrix4.h"
-#include "../math/cece_e_angle.h"
+#include "../cece_camera/cece_camera.h"
+#include "../cece_math/cece_vector3.h"
+#include "../cece_math/cece_matrix4.h"
+#include "../cece_math/cece_e_angle.h"
 
 extern float g_delta_time;
 

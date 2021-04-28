@@ -1,8 +1,8 @@
-#include "window/window_manager.h"
-#include "cece_math.h"
+#include "window_manager/window_class.h"
 #include "render_models/terrain.h"
 #include "render_models/player.h"
 #include "render_models/entity.h"
+#include "render_models/blocky.h"
 
 float g_delta_time;
 cece::Matrix4 g_MVP;
@@ -13,35 +13,42 @@ cece::Matrix4 g_MVP;
 //without calling the getter and uniform for each in the loop
 
 int main() {
-	ShowConsole(false);
-	Window window;
+	cece::ShowConsole();
+	cece::Window window(1600/2, 900/2, "Blocky", false);
 	window.setFaceCullingCCW();
-
+	
 	Player player;
 	g_MVP = player.getMVP();
 
-	Entity donut(
+	Entity donut1(
 		"C:/users/emin1/Documents/3D models/donut.obj",
 		"C:/users/emin1/Documents/3D models/basic.vert",
 		"C:/users/emin1/Documents/3D models/basic.frag"
 	);
-	donut.setMVP(g_MVP);
-	donut.setWorldPosition({ 0.0f, 1.0f, -10.f });
+	donut1.setWorldPosition({ 0.0f, 1.0f, -10.f });
 
 	Entity donut2(
 		"C:/users/emin1/Documents/3D models/donut.obj",
 		"C:/users/emin1/Documents/3D models/basic.vert",
 		"C:/users/emin1/Documents/3D models/basic.frag"
 	);
-	donut2.setMVP(g_MVP);
-	donut2.setWorldPosition({ 5.0f, 1.0f, -12.f });
+	donut2.setWorldPosition({ 15.0f, 1.0f, -10.f });
 
-	Terrain terrain;
-	terrain.accessProgram()->setUniform("mvp", g_MVP.c_arr());
+	Blocky blocky1;
+	blocky1.setWorldPosition({ 0.0f, 1.0f, -3.0f });
+	blocky1.accessProgram()->setUniform("mvp", g_MVP.c_arr());
+
+	Entity terrain(
+		"./res/models/flatland.obj",
+		"./res/shaders/flatland.vert",
+		"./res/shaders/flatland.frag"
+	);
+	terrain.setWorldPosition({ 0.0f, -.4f, 0.0f });
 
 	while (window.isOpen()) {
 
-		if (window.isPressed[(uint32_t)Event::Key::Escape]) window.close();
+		using Key = Event::Key;
+		if (window.keyIsPressed(Key::Escape)) window.close();
 
 		window.prepareDraw();
 
@@ -54,26 +61,25 @@ int main() {
 		player.yaw(window.getCursorChangeX());
 		player.pitch(window.getCursorChangeY());
 
-		if (window.isPressed[(uint32_t)Event::Key::W]) player.moveForward();
-		if (window.isPressed[(uint32_t)Event::Key::S]) player.moveBackward();
-		if (window.isPressed[(uint32_t)Event::Key::D]) player.moveRight();
-		if (window.isPressed[(uint32_t)Event::Key::A]) player.moveLeft();
-		if (window.isPressed[(uint32_t)Event::Key::Space]) player.moveUp();
-		if (window.isPressed[(uint32_t)Event::Key::L_shift]) player.moveDown();
+		if (window.keyIsPressed(Key::W)) player.moveForward();
+		if (window.keyIsPressed(Key::S)) player.moveBackward();
+		if (window.keyIsPressed(Key::D)) player.moveRight();
+		if (window.keyIsPressed(Key::A)) player.moveLeft();
+		if (window.keyIsPressed(Key::Space)) player.moveUp();
+		if (window.keyIsPressed(Key::L_shift)) player.moveDown();
 
 		g_MVP = player.getMVP();
 
-		terrain.accessProgram()->updateUniform("mvp", g_MVP.c_arr());
+		blocky1.accessProgram()->updateUniform("mvp", g_MVP.c_arr());
+		blocky1.draw();
+
 		terrain.draw();
-
-		donut.updateMVP(g_MVP);
-		donut.draw();
-		donut2.updateMVP(g_MVP);
+		donut1.draw();
 		donut2.draw();
-
 		player.draw();
 
 		window.swapBuffers();
 	}
+	window.~Window();
 	return 0;
 }

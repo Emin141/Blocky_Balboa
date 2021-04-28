@@ -1,5 +1,9 @@
 #include "shader_parser.h"
 
+#include <cstring>
+#include <fstream>
+#include <sstream>
+
 std::string getShaderSource(const std::string& filepath)
 {
 	std::ifstream input_file;

@@ -1,11 +1,26 @@
 #include <cstdio>
 #include <map>
 
-#include "shader_manager.h"
+#include "shader_class.h"
 #include "shader_parser.h"
-#include "logger.h"
+#include "../logger/logger.h"
 
-Shader::Shader(Type shader_type, const std::string& source_path)
+class SubShader
+{
+public:
+	enum class Type {
+		VERTEX = 0,
+		FRAGMENT = 1
+	};
+	SubShader() = delete;
+	SubShader(const SubShader& otherShader) = delete;
+	SubShader(Type shader_type, const std::string& source_path);
+	inline GLuint getShaderID() const { return m_ShaderID; }
+private:
+	GLuint m_ShaderID;
+};
+
+SubShader::SubShader(Type shader_type, const std::string& source_path)
 {
 	std::string s_shader_source = getShaderSource(source_path);
 	const char* c_shader_source = s_shader_source.c_str();
@@ -36,8 +51,10 @@ Shader::Shader(Type shader_type, const std::string& source_path)
 	_print_shader_info_log(m_ShaderID);
 }
 
-ShaderProgram::ShaderProgram(const Shader& vertex_shader, const Shader& fragment_shader)
+Shader::Shader(const std::string& vertex_shader_source_path, const std::string& fragment_shader_source_path)
 {
+	SubShader vertex_shader(SubShader::Type::VERTEX, vertex_shader_source_path);
+	SubShader fragment_shader(SubShader::Type::FRAGMENT, fragment_shader_source_path);
 	m_ProgramID = glCreateProgram();
 	glAttachShader(m_ProgramID, vertex_shader.getShaderID());
 	glAttachShader(m_ProgramID, fragment_shader.getShaderID());
@@ -54,34 +71,36 @@ ShaderProgram::ShaderProgram(const Shader& vertex_shader, const Shader& fragment
 
 	print_all(m_ProgramID);
 	uniform_index = 0;
+	glDeleteShader(vertex_shader.getShaderID());
+	glDeleteShader(fragment_shader.getShaderID());
 }
 
-void ShaderProgram::setUniform(const char* uniform_name, float r, float g, float b, float a)
+void Shader::setUniform(const char* uniform_name, float r, float g, float b, float a)
 {
 	uniform_location[uniform_index] = glGetUniformLocation(m_ProgramID, uniform_name);
 	uniform_map.insert(std::pair(uniform_name, uniform_location[uniform_index]));
 	uniform_index++;
-	useProgram();
+	Activate();
 	glUniform4f(uniform_map[uniform_name], r, g, b, a);
 }
 
-void ShaderProgram::setUniform(const char* uniform_name, float mat[16])
+void Shader::setUniform(const char* uniform_name, float mat[16])
 {
 	uniform_location[uniform_index] = glGetUniformLocation(m_ProgramID, uniform_name);
 	uniform_map.insert(std::pair(uniform_name, uniform_location[uniform_index]));
 	uniform_index++;
-	useProgram();
+	Activate();
 	glUniformMatrix4fv(uniform_map[uniform_name], 1, GL_FALSE, mat);
 }
 
-void ShaderProgram::updateUniform(const char* uniform_name, float mat[16])
+void Shader::updateUniform(const char* uniform_name, float mat[16])
 {
-	useProgram();
+	Activate();
 	glUniformMatrix4fv(uniform_map[uniform_name], 1, GL_FALSE, mat);
 }
 
-void ShaderProgram::updateUniform(const char* uniform_name, float r, float g, float b, float a)
+void Shader::updateUniform(const char* uniform_name, float r, float g, float b, float a)
 {
-	useProgram();
+	Activate();
 	glUniform4f(uniform_map[uniform_name], r, g, b, a);
 }
