@@ -7,10 +7,12 @@
 float g_delta_time;
 cece::Matrix4 g_MVP;
 
+#if 0
 //The MVP matrix from the camera attached to the player entity
 //should probably be a global variable, or external to the player instance.
 //That way, draw calls in other objects could be made using the same variable
 //without calling the getter and uniform for each in the loop
+#endif
 
 int main() {
 	cece::ShowConsole();
@@ -38,7 +40,7 @@ int main() {
 
 		using Key = Event::Key;
 		if (window.keyIsPressed(Key::Escape)) window.close();
-
+		
 		window.prepareDraw();
 
 		//Event handling should be done as an array of 
@@ -88,5 +90,6 @@ int main() {
 		window.swapBuffers();
 	}
 	window.~Window();
+
 	return 0;
 }

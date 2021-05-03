@@ -193,6 +193,12 @@
     <ClCompile Include="src\window_manager\window_class.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\GLFW\glfw3.h" />
+    <ClInclude Include="include\GLFW\glfw3native.h" />
+    <ClInclude Include="include\GL\eglew.h" />
+    <ClInclude Include="include\GL\glew.h" />
+    <ClInclude Include="include\GL\glxew.h" />
+    <ClInclude Include="include\GL\wglew.h" />
     <ClInclude Include="src\cece_camera\cece_camera.h" />
     <ClInclude Include="src\cece_math\cece_e_angle.h" />
     <ClInclude Include="src\cece_math\cece_matrix4.h" />
