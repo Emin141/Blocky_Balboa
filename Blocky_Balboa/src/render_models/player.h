@@ -2,7 +2,6 @@
 
 #include <cstdlib>
 
-//#include "blocky.h"
 #include "entity.h"
 #include "../cece_camera/cece_camera.h"
 #include "../cece_math/cece_vector3.h"
@@ -11,7 +10,7 @@
 
 extern float g_delta_time;
 
-class Player //: public Entity
+class Player
 {
 public:
 	Player();
