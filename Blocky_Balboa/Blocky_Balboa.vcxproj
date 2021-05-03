@@ -183,10 +183,9 @@
     <ClCompile Include="src\opengl_classes\vbo_class.cpp" />
     <ClCompile Include="src\logger\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\render_models\blocky.cpp" />
     <ClCompile Include="src\render_models\player.cpp" />
     <ClCompile Include="src\render_models\entity.cpp" />
-    <ClCompile Include="src\render_models\mesh.cpp" />
+    <ClCompile Include="src\render_models\mesh_class.cpp" />
     <ClCompile Include="src\stb\stb_image.cpp" />
     <ClCompile Include="src\window_manager\window_callbacks.cpp" />
     <ClCompile Include="src\opengl_classes\shader_class.cpp" />
@@ -205,10 +204,9 @@
     <ClInclude Include="src\opengl_classes\vao_class.h" />
     <ClInclude Include="src\opengl_classes\vbo_class.h" />
     <ClInclude Include="src\logger\logger.h" />
-    <ClInclude Include="src\render_models\blocky.h" />
     <ClInclude Include="src\render_models\player.h" />
     <ClInclude Include="src\render_models\entity.h" />
-    <ClInclude Include="src\render_models\mesh.h" />
+    <ClInclude Include="src\render_models\mesh_class.h" />
     <ClInclude Include="src\opengl_classes\shader_class.h" />
     <ClInclude Include="src\opengl_classes\shader_parser.h" />
     <ClInclude Include="src\stb\stb_image.h" />

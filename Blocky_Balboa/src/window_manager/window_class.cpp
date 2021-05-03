@@ -166,7 +166,7 @@ namespace cece {
 
 		for (auto i : isPressed) { i = false; }
 
-#ifdef DEBUG
+#ifdef FREE_CURSOR
 		glfwSetInputMode(m_WindowID, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 #else
 		glfwSetInputMode(m_WindowID, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);

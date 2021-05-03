@@ -2,8 +2,6 @@
 
 #include "entity.h"
 
-#include "../cece_math/cece_matrix4.h"
-
 Entity::Entity(const std::string& mesh_path, const std::string& v_shader_path,
 	const std::string& f_shader_path)
 {
@@ -101,7 +99,15 @@ void Entity::setWorldPosition(const cece::Vector3& world_position) const
 {
 	m_Program->setUniform(
 		"model_matrix",
-		(cece::createScalingMatrix(3.0f) * cece::createTranslationMatrix(world_position)).c_arr()
+		(cece::createScalingMatrix(1.0f) * cece::createTranslationMatrix(world_position)).c_arr()
+	);
+}
+
+void Entity::updateWorldPosition(const cece::Vector3& world_position) const
+{
+	m_Program->updateUniform(
+		"model_matrix",
+		(cece::createScalingMatrix(1.0f) * cece::createTranslationMatrix(world_position)).c_arr()
 	);
 }
 

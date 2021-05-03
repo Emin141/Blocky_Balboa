@@ -331,7 +331,7 @@ namespace cece {
 		ptrWindow->cursor_dxpos = xpos - old_x_pos;
 		ptrWindow->cursor_dypos = ypos - old_y_pos;
 
-#ifndef DEBUG
+#ifndef FREE_CURSOR
 		glfwSetCursorPos(
 			ptrWindow->m_WindowID,
 			ptrWindow->m_width / 2.0f,

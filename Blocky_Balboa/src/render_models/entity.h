@@ -1,11 +1,12 @@
 #pragma once
 
+#include "mesh_class.h"
 #include "../cece_math/cece_vector3.h"
-#include "mesh.h"
 #include "../opengl_classes/shader_class.h"
 #include "../opengl_classes/vbo_class.h"
 #include "../opengl_classes/vao_class.h"
 #include "../opengl_classes/ebo_class.h"
+#include "../opengl_classes/texture_class.h"
 #include "../cece_math/cece_matrix4.h"
 
 extern cece::Matrix4 g_MVP;
@@ -23,6 +24,7 @@ public:
 
 	void draw();
 	void setWorldPosition(const cece::Vector3& world_position) const;
+	void updateWorldPosition(const cece::Vector3& world_position) const;
 	inline Shader* accessProgram() const { return m_Program; }
 
 private:
@@ -32,6 +34,7 @@ private:
 	VBO m_vbo;
 	VAO m_vao;
 	EBO m_ebo;
+	Texture m_texture;
 
 	GLuint m_number_of_faces;
 

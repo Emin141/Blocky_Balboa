@@ -14,9 +14,9 @@ cece::Matrix4 g_MVP;
 
 int main() {
 	cece::ShowConsole();
-	cece::Window window(1600/2, 900/2, "Blocky", false);
+	cece::Window window(1600 / 2, 900 / 2, "Blocky", false);
 	window.setFaceCullingCCW();
-	
+
 	Player player;
 	g_MVP = player.getMVP();
 
@@ -27,23 +27,12 @@ int main() {
 	);
 	donut1.setWorldPosition({ 0.0f, 1.0f, -10.f });
 
-	Entity donut2(
-		"C:/users/emin1/Documents/3D models/donut.obj",
-		"C:/users/emin1/Documents/3D models/basic.vert",
-		"C:/users/emin1/Documents/3D models/basic.frag"
-	);
-	donut2.setWorldPosition({ 15.0f, 1.0f, -10.f });
-
-	Blocky blocky1;
-	blocky1.setWorldPosition({ 0.0f, 1.0f, -3.0f });
-	blocky1.accessProgram()->setUniform("mvp", g_MVP.c_arr());
-
 	Entity terrain(
 		"./res/models/flatland.obj",
 		"./res/shaders/flatland.vert",
 		"./res/shaders/flatland.frag"
 	);
-	terrain.setWorldPosition({ 0.0f, -.4f, 0.0f });
+	terrain.setWorldPosition({ 0.0f, -1.0f, 0.0f });
 
 	while (window.isOpen()) {
 
@@ -70,12 +59,30 @@ int main() {
 
 		g_MVP = player.getMVP();
 
-		blocky1.accessProgram()->updateUniform("mvp", g_MVP.c_arr());
-		blocky1.draw();
-
 		terrain.draw();
+		
+		donut1.updateWorldPosition({ 0.0f, 1.0f, -10.0f });
 		donut1.draw();
-		donut2.draw();
+		donut1.updateWorldPosition({ 0.0f, 1.0f, -15.0f });
+		donut1.draw();
+		donut1.updateWorldPosition({ 0.0f, 1.0f, -5.0f });
+		donut1.draw();
+		donut1.updateWorldPosition({ 5.0f, 1.0f, -10.0f });
+		donut1.draw();
+		donut1.updateWorldPosition({ 5.0f, 1.0f, -15.0f });
+		donut1.draw();
+		donut1.updateWorldPosition({ 5.0f, 1.0f, -5.0f });
+		donut1.draw();
+		donut1.updateWorldPosition({ -5.0f, 1.0f, -10.0f });
+		donut1.draw();
+		donut1.updateWorldPosition({ -5.0f, 1.0f, -15.0f });
+		donut1.draw();
+		donut1.updateWorldPosition({ -5.0f, 1.0f, -5.0f });
+		donut1.draw();
+
+		donut1.updateWorldPosition({-0.0f, 0.0f, 0.0f});
+		donut1.draw();
+
 		player.draw();
 
 		window.swapBuffers();
