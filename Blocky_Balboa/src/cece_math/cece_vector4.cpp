@@ -29,28 +29,28 @@ Vector4::Vector4(const Vector4& otherVector4)
 	w = otherVector4.w;
 }
 
-Vector4::Vector4(const Vector3& vector3, float w)
+Vector4::Vector4(const Vector3& vector3, float _w)
 {
 	x = vector3.x;
 	y = vector3.y;
 	z = vector3.z;
-	w = w;
+	w = _w;
 }
 
-Vector4::Vector4(float values[3], float w)
+Vector4::Vector4(float values[3], float _w)
 {
 	x = values[0];
 	y = values[1];
 	z = values[2];
-	w = w;
+	w = _w;
 }
 
-Vector4::Vector4(float x, float y, float z, float w)
+Vector4::Vector4(float _x, float _y, float _z, float _w)
 {
-	x = x;
-	y = y;
-	z = z;
-	w = w;
+	x = _x;
+	y = _y;
+	z = _z;
+	w = _w;
 }
 
 Vector4 Vector4::operator-()
