@@ -21,6 +21,10 @@
     <None Include="res\shaders\terrain.vert" />
     <None Include="res\shaders\player_shader.frag" />
     <None Include="res\shaders\player_shader.vert" />
+    <None Include="res\shaders\donut.frag" />
+    <None Include="res\shaders\donut.vert" />
+    <None Include="res\shaders\flatland.frag" />
+    <None Include="res\shaders\flatland.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\logger\logger.cpp">
@@ -177,5 +181,17 @@
     <Image Include="res\textures\parsing_test.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\textures\heatmap.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="res\models\colored_cube.obj" />
+    <Object Include="res\models\donut.obj" />
+    <Object Include="res\models\flatland.obj" />
+    <Object Include="res\models\haze_sljabadar.obj" />
+    <Object Include="res\models\icosphere.obj" />
+    <Object Include="res\models\tree.obj" />
+    <Object Include="res\models\violin_lady.obj" />
   </ItemGroup>
 </Project>

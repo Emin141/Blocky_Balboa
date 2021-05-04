@@ -163,6 +163,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="res\shaders\donut.frag" />
+    <None Include="res\shaders\donut.vert" />
+    <None Include="res\shaders\flatland.frag" />
+    <None Include="res\shaders\flatland.vert" />
     <None Include="res\shaders\player_shader.frag" />
     <None Include="res\shaders\player_shader.vert" />
     <None Include="res\shaders\terrain.frag" />
@@ -223,8 +227,18 @@
     <ClInclude Include="src\window_manager\window_class.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\textures\heatmap.png" />
     <Image Include="res\textures\parsing_test.bmp" />
     <Image Include="res\textures\parsing_test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="res\models\colored_cube.obj" />
+    <Object Include="res\models\donut.obj" />
+    <Object Include="res\models\flatland.obj" />
+    <Object Include="res\models\haze_sljabadar.obj" />
+    <Object Include="res\models\icosphere.obj" />
+    <Object Include="res\models\tree.obj" />
+    <Object Include="res\models\violin_lady.obj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
