@@ -1,197 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="src\cece_camera\cece_3d_projection.cpp" />
+    <ClCompile Include="src\cece_camera\cece_camera.cpp" />
+    <ClCompile Include="src\cece_math\cece_e_angle.cpp" />
+    <ClCompile Include="src\cece_math\cece_matrix4.cpp" />
+    <ClCompile Include="src\cece_math\cece_point.cpp" />
+    <ClCompile Include="src\cece_math\cece_vector3.cpp" />
+    <ClCompile Include="src\cece_math\cece_vector4.cpp" />
+    <ClCompile Include="src\entity_class\entity.cpp" />
+    <ClCompile Include="src\entity_class\player.cpp" />
+    <ClCompile Include="src\opengl_classes\ebo_class.cpp" />
+    <ClCompile Include="src\opengl_classes\mesh_class.cpp" />
+    <ClCompile Include="src\opengl_classes\texture_class.cpp" />
+    <ClCompile Include="src\opengl_classes\vao_class.cpp" />
+    <ClCompile Include="src\opengl_classes\vbo_class.cpp" />
+    <ClCompile Include="src\logger\logger.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\stb\stb_image.cpp" />
+    <ClCompile Include="src\window_manager\window_callbacks.cpp" />
+    <ClCompile Include="src\opengl_classes\shader_class.cpp" />
+    <ClCompile Include="src\opengl_classes\shader_parser.cpp" />
+    <ClCompile Include="src\window_manager\window_class.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\blocky_balboa.frag" />
-    <None Include="res\shaders\blocky_balboa.vert" />
-    <None Include="res\shaders\terrain.frag" />
-    <None Include="res\shaders\terrain.vert" />
-    <None Include="res\shaders\player_shader.frag" />
-    <None Include="res\shaders\player_shader.vert" />
+    <ClInclude Include="include\GLFW\glfw3.h" />
+    <ClInclude Include="include\GLFW\glfw3native.h" />
+    <ClInclude Include="include\GL\eglew.h" />
+    <ClInclude Include="include\GL\glew.h" />
+    <ClInclude Include="include\GL\glxew.h" />
+    <ClInclude Include="include\GL\wglew.h" />
+    <ClInclude Include="src\cece_camera\cece_3d_projection.h" />
+    <ClInclude Include="src\cece_camera\cece_camera.h" />
+    <ClInclude Include="src\cece_math\cece_e_angle.h" />
+    <ClInclude Include="src\cece_math\cece_matrix4.h" />
+    <ClInclude Include="src\cece_math\cece_point.h" />
+    <ClInclude Include="src\cece_math\cece_vector3.h" />
+    <ClInclude Include="src\cece_math\cece_vector4.h" />
+    <ClInclude Include="src\entity_class\entity.h" />
+    <ClInclude Include="src\entity_class\player.h" />
+    <ClInclude Include="src\opengl_classes\ebo_class.h" />
+    <ClInclude Include="src\opengl_classes\mesh_class.h" />
+    <ClInclude Include="src\opengl_classes\texture_class.h" />
+    <ClInclude Include="src\opengl_classes\vao_class.h" />
+    <ClInclude Include="src\opengl_classes\vbo_class.h" />
+    <ClInclude Include="src\logger\logger.h" />
+    <ClInclude Include="src\render_models\player.h" />
+    <ClInclude Include="src\opengl_classes\shader_class.h" />
+    <ClInclude Include="src\opengl_classes\shader_parser.h" />
+    <ClInclude Include="src\stb\stb_image.h" />
+    <ClInclude Include="src\window_manager\event_class.h" />
+    <ClInclude Include="src\window_manager\window_class.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\textures\heatmap.png" />
+    <Image Include="res\textures\parsing_test.bmp" />
+    <Image Include="res\textures\parsing_test.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="res\shaders\donut.frag" />
     <None Include="res\shaders\donut.vert" />
     <None Include="res\shaders\flatland.frag" />
     <None Include="res\shaders\flatland.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\logger\logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\opengl_classes\shader_class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\opengl_classes\shader_parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\window_manager\window_class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cece_math\cece_vector3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cece_math\cece_point.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cece_math\cece_vector4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cece_math\cece_matrix4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cece_math\cece_e_angle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cece_camera\cece_camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\window_manager\window_callbacks.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stb\stb_image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\opengl_classes\ebo_class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\opengl_classes\texture_class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\opengl_classes\vao_class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\opengl_classes\vbo_class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity_class\entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity_class\player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\opengl_classes\mesh_class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cece_camera\cece_3d_projection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\logger\logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\opengl_classes\shader_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\opengl_classes\shader_parser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\window_manager\window_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cece_math\cece_vector3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cece_math\cece_point.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cece_math\cece_vector4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cece_math\cece_matrix4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cece_math\cece_e_angle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cece_camera\cece_camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\render_models\player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\window_manager\event_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stb\stb_image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\opengl_classes\ebo_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\opengl_classes\texture_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\opengl_classes\vao_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\opengl_classes\vbo_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GL\eglew.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GL\glew.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GL\glxew.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GL\wglew.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GLFW\glfw3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GLFW\glfw3native.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entity_class\entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entity_class\player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\opengl_classes\mesh_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cece_camera\cece_3d_projection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="res\textures\parsing_test.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\parsing_test.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\heatmap.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="res\models\colored_cube.obj" />
-    <Object Include="res\models\donut.obj" />
-    <Object Include="res\models\flatland.obj" />
-    <Object Include="res\models\haze_sljabadar.obj" />
-    <Object Include="res\models\icosphere.obj" />
-    <Object Include="res\models\tree.obj" />
-    <Object Include="res\models\violin_lady.obj" />
+    <None Include="res\shaders\player_shader.frag" />
+    <None Include="res\shaders\player_shader.vert" />
+    <None Include="res\shaders\terrain.frag" />
+    <None Include="res\shaders\terrain.vert" />
+    <None Include="res\shaders\blocky_balboa.frag" />
+    <None Include="res\shaders\blocky_balboa.vert" />
   </ItemGroup>
 </Project>
