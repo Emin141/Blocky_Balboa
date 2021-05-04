@@ -8,22 +8,24 @@
 class SubShader
 {
 public:
-	enum class Type {
+	enum class Type
+	{
 		VERTEX = 0,
 		FRAGMENT = 1
 	};
 	SubShader() = delete;
-	SubShader(const SubShader& otherShader) = delete;
-	SubShader(Type shader_type, const std::string& source_path);
+	SubShader(const SubShader &otherShader) = delete;
+	SubShader(Type shader_type, const std::string &source_path);
 	inline GLuint getShaderID() const { return m_ShaderID; }
+
 private:
 	GLuint m_ShaderID;
 };
 
-SubShader::SubShader(Type shader_type, const std::string& source_path)
+SubShader::SubShader(Type shader_type, const std::string &source_path)
 {
 	std::string s_shader_source = getShaderSource(source_path);
-	const char* c_shader_source = s_shader_source.c_str();
+	const char *c_shader_source = s_shader_source.c_str();
 
 	switch (shader_type)
 	{
@@ -43,7 +45,8 @@ SubShader::SubShader(Type shader_type, const std::string& source_path)
 	// check for compile errors
 	int params = -1;
 	glGetShaderiv(m_ShaderID, GL_COMPILE_STATUS, &params);
-	if (GL_TRUE != params) {
+	if (GL_TRUE != params)
+	{
 		fprintf(stderr, "ERROR: GL shader index %i did not compile\n", m_ShaderID);
 		_print_shader_info_log(m_ShaderID);
 		exit(-1);
@@ -51,7 +54,7 @@ SubShader::SubShader(Type shader_type, const std::string& source_path)
 	_print_shader_info_log(m_ShaderID);
 }
 
-Shader::Shader(const std::string& vertex_shader_source_path, const std::string& fragment_shader_source_path)
+Shader::Shader(const std::string &vertex_shader_source_path, const std::string &fragment_shader_source_path)
 {
 	SubShader vertex_shader(SubShader::Type::VERTEX, vertex_shader_source_path);
 	SubShader fragment_shader(SubShader::Type::FRAGMENT, fragment_shader_source_path);
@@ -62,9 +65,10 @@ Shader::Shader(const std::string& vertex_shader_source_path, const std::string& 
 	// check if link was successful
 	int params = -1;
 	glGetProgramiv(m_ProgramID, GL_LINK_STATUS, &params);
-	if (GL_TRUE != params) {
+	if (GL_TRUE != params)
+	{
 		fprintf(stderr, "ERROR: could not link shader program GL index %u\n",
-			m_ProgramID);
+				m_ProgramID);
 		_print_program_info_log(m_ProgramID);
 		exit(-1);
 	}
@@ -75,32 +79,35 @@ Shader::Shader(const std::string& vertex_shader_source_path, const std::string& 
 	glDeleteShader(fragment_shader.getShaderID());
 }
 
-void Shader::setUniform(const char* uniform_name, float r, float g, float b, float a)
+void Shader::set_uniform(UniformType _uniform_type, const char *_uniform_name, const void *_data)
 {
-	uniform_location[uniform_index] = glGetUniformLocation(m_ProgramID, uniform_name);
-	uniform_map.insert(std::pair(uniform_name, uniform_location[uniform_index]));
+	uniform_location[uniform_index] = glGetUniformLocation(m_ProgramID, _uniform_name);
+	uniform_map.insert(std::pair(_uniform_name, uniform_location[uniform_index]));
 	uniform_index++;
 	Activate();
-	glUniform4f(uniform_map[uniform_name], r, g, b, a);
+	switch (_uniform_type)
+	{
+	case UniformType::INT1:
+		glUniform1i(uniform_map[_uniform_name], (GLint)(_data));
+	case UniformType::VEC3:
+		glUniform3fv(uniform_map[_uniform_name], 1, reinterpret_cast<const GLfloat *>(_data));
+	case UniformType::MAT4:
+		glUniformMatrix4fv(uniform_map[_uniform_name], 1, GL_FALSE, reinterpret_cast<const GLfloat *>(_data));
+	default: break;
+	}
 }
 
-void Shader::setUniform(const char* uniform_name, float mat[16])
-{
-	uniform_location[uniform_index] = glGetUniformLocation(m_ProgramID, uniform_name);
-	uniform_map.insert(std::pair(uniform_name, uniform_location[uniform_index]));
-	uniform_index++;
-	Activate();
-	glUniformMatrix4fv(uniform_map[uniform_name], 1, GL_FALSE, mat);
-}
-
-void Shader::updateUniform(const char* uniform_name, float mat[16])
+void Shader::update_uniform(UniformType _uniform_type, const char* _uniform_name, const void* _data)
 {
 	Activate();
-	glUniformMatrix4fv(uniform_map[uniform_name], 1, GL_FALSE, mat);
-}
-
-void Shader::updateUniform(const char* uniform_name, float r, float g, float b, float a)
-{
-	Activate();
-	glUniform4f(uniform_map[uniform_name], r, g, b, a);
+	switch (_uniform_type)
+	{
+	case UniformType::INT1:
+		glUniform1i(uniform_map[_uniform_name], (GLint)(_data));
+	case UniformType::VEC3:
+		glUniform3fv(uniform_map[_uniform_name], 1, reinterpret_cast<const GLfloat *>(_data));
+	case UniformType::MAT4:
+		glUniformMatrix4fv(uniform_map[_uniform_name], 1, GL_FALSE, reinterpret_cast<const GLfloat *>(_data));
+	default: break;
+	}
 }

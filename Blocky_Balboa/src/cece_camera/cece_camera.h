@@ -14,21 +14,7 @@ namespace cece {
 		Vector3 position;
 		float yaw, pitch;
 
-		/*void moveForward();
-		void moveBackward();
-		void moveRight();
-		void moveLeft();
-		void moveUp();
-		void moveDown();
-
-		void yawRight();
-		void yawLeft();
-		void pitchUp();
-		void pitchDown();*/
-
 		Matrix4 getMVP();
-
-		//Vector3 forward, up, right;
 
 	private:
 		Matrix4 ViewMatrix();

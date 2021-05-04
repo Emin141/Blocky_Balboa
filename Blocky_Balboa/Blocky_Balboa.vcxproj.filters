@@ -21,6 +21,10 @@
     <None Include="res\shaders\terrain.vert" />
     <None Include="res\shaders\player_shader.frag" />
     <None Include="res\shaders\player_shader.vert" />
+    <None Include="res\shaders\donut.frag" />
+    <None Include="res\shaders\donut.vert" />
+    <None Include="res\shaders\flatland.frag" />
+    <None Include="res\shaders\flatland.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\logger\logger.cpp">
@@ -56,15 +60,6 @@
     <ClCompile Include="src\cece_camera\cece_camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\render_models\player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\render_models\mesh_class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\render_models\entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\window_manager\window_callbacks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,6 +76,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\opengl_classes\vbo_class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity_class\entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity_class\player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opengl_classes\mesh_class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cece_camera\cece_3d_projection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,12 +123,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\render_models\player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\render_models\mesh_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\render_models\entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\window_manager\event_class.h">
@@ -160,12 +161,27 @@
     <ClInclude Include="include\GLFW\glfw3native.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\entity_class\entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entity_class\player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl_classes\mesh_class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cece_camera\cece_3d_projection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\parsing_test.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\parsing_test.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\heatmap.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

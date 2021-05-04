@@ -8,7 +8,7 @@ Entity::Entity(const std::string& mesh_path, const std::string& v_shader_path,
 	//creating shader from source
 	m_Program = new Shader(v_shader_path, f_shader_path);
 	m_Program->Activate();
-	m_Program->setUniform("model_matrix", cece::createIdentityMatrix().c_arr());
+	m_Program->set_uniform(UniformType::MAT4, "model_matrix", cece::createIdentityMatrix().c_arr());
 	setMVP();
 
 	//creating VAO
@@ -97,7 +97,8 @@ Entity::~Entity()
 
 void Entity::setWorldPosition(const cece::Vector3& world_position) const
 {
-	m_Program->setUniform(
+	m_Program->set_uniform(
+		UniformType::MAT4,
 		"model_matrix",
 		(cece::createScalingMatrix(1.0f) * cece::createTranslationMatrix(world_position)).c_arr()
 	);
@@ -105,7 +106,8 @@ void Entity::setWorldPosition(const cece::Vector3& world_position) const
 
 void Entity::updateWorldPosition(const cece::Vector3& world_position) const
 {
-	m_Program->updateUniform(
+	m_Program->update_uniform(
+		UniformType::MAT4,
 		"model_matrix",
 		(cece::createScalingMatrix(1.0f) * cece::createTranslationMatrix(world_position)).c_arr()
 	);
@@ -128,10 +130,10 @@ void Entity::draw()
 
 void Entity::setMVP() const
 {
-	m_Program->setUniform("mvp", g_MVP.c_arr());
+	m_Program->set_uniform(UniformType::MAT4, "mvp", g_MVP.c_arr());
 }
 
 void Entity::updateMVP() const
 {
-	m_Program->updateUniform("mvp", g_MVP.c_arr());
+	m_Program->update_uniform(UniformType::MAT4, "mvp", g_MVP.c_arr());
 }
