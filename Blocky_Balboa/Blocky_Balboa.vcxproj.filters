@@ -68,5 +68,8 @@
     <None Include="res\shaders\terrain.vert" />
     <None Include="res\shaders\blocky_balboa.frag" />
     <None Include="res\shaders\blocky_balboa.vert" />
+    <None Include="res\models\donut.wfo" />
+    <None Include="res\models\flatland.wfo" />
+    <None Include="res\models\haze_sljabadar.wfo" />
   </ItemGroup>
 </Project>

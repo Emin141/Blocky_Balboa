@@ -163,6 +163,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="res\models\donut.wfo" />
+    <None Include="res\models\flatland.wfo" />
+    <None Include="res\models\haze_sljabadar.wfo" />
     <None Include="res\shaders\donut.frag" />
     <None Include="res\shaders\donut.vert" />
     <None Include="res\shaders\flatland.frag" />
