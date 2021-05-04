@@ -1,29 +1,22 @@
 #include "window_manager/window_class.h"
-#include "render_models/terrain.h"
-#include "render_models/player.h"
-#include "render_models/entity.h"
-#include "render_models/blocky.h"
+#include "entity_class/player.h"
+#include "entity_class/entity.h"
 
 float g_delta_time;
 cece::Matrix4 g_MVP;
 
-//The MVP matrix from the camera attached to the player entity
-//should probably be a global variable, or external to the player instance.
-//That way, draw calls in other objects could be made using the same variable
-//without calling the getter and uniform for each in the loop
-
 int main() {
-	cece::ShowConsole();
-	cece::Window window(1600 / 2, 900 / 2, "Blocky", false);
+	cece::show_console_window();
+	cece::Window window(1600, 900, "Blocky", false);
 	window.setFaceCullingCCW();
 
 	Player player;
 	g_MVP = player.getMVP();
 
 	Entity donut1(
-		"C:/users/emin1/Documents/3D models/donut.obj",
-		"C:/users/emin1/Documents/3D models/basic.vert",
-		"C:/users/emin1/Documents/3D models/basic.frag"
+		"./res/models/donut.obj",
+		"./res/shaders/donut.vert",
+		"./res/shaders/donut.frag"
 	);
 	donut1.setWorldPosition({ 0.0f, 1.0f, -10.f });
 
@@ -85,6 +78,7 @@ int main() {
 
 		player.draw();
 
+		window.pollEvents();
 		window.swapBuffers();
 	}
 	window.~Window();
