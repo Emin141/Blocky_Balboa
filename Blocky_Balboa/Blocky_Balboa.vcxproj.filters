@@ -185,4 +185,13 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Object Include="res\models\colored_cube.obj" />
+    <Object Include="res\models\donut.obj" />
+    <Object Include="res\models\flatland.obj" />
+    <Object Include="res\models\haze_sljabadar.obj" />
+    <Object Include="res\models\icosphere.obj" />
+    <Object Include="res\models\tree.obj" />
+    <Object Include="res\models\violin_lady.obj" />
+  </ItemGroup>
 </Project>
