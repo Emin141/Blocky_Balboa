@@ -10,7 +10,7 @@ public:
 	//	KEY_RELEASE = 2
 	//};
 
-	enum class Key {
+	enum Key {
 		None = -1,
 		Escape = 0,
 		Q, W, E, R, T, Z, U, I, O, P,

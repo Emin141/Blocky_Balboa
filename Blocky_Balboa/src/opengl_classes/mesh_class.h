@@ -13,7 +13,6 @@ public:
 	//The constructor loads vertex positions and vertex indices
 	Mesh(const std::string& mesh_path);
 
-	//guess what these do?
 	inline auto getVertexPositions() const { return VertexPositions; }
 	inline auto getVertexIndices() const { return VertexIndices; }
 

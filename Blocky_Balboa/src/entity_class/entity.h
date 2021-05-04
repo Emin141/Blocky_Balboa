@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mesh_class.h"
+#include "../opengl_classes/mesh_class.h"
 #include "../cece_math/cece_vector3.h"
 #include "../opengl_classes/shader_class.h"
 #include "../opengl_classes/vbo_class.h"

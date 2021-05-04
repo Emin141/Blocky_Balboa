@@ -3,6 +3,18 @@
 #include <iostream>
 #include <map>
 
+#include "../cece_math/cece_vector3.h"
+#include "../cece_math/cece_matrix4.h"
+
+enum class UniformType
+{
+	UNSPECIFIED = -1,
+	INT1 = 0,
+	VEC3 = 1,
+	MAT4 = 2,
+
+	TOTAL
+};
 
 class Shader
 {
@@ -14,11 +26,9 @@ public:
 	inline GLuint getProgramID() const { return m_ProgramID; }
 	inline void Activate() { glUseProgram(m_ProgramID); }
 
-	void setUniform(const char* uniform_name, float r = 1.0f, float g = 1.0f, float b = 1.0f, float a = 1.0f);
-	void setUniform(const char* uniform_name, float mat[16]);
-	
-	void updateUniform(const char* uniform_name, float mat[16]);
-	void updateUniform(const char* uniform_name, float r = 1.0f, float g = 1.0f, float b = 1.0f, float a = 1.0f);
+	void set_uniform(UniformType _uniform_type, const char* _uniform_name, const void* _data);
+	void update_uniform(UniformType _uniform_type, const char* _uniform_name, const void* _data);
+
 private:
 	GLuint m_ProgramID;
 	GLuint uniform_index;

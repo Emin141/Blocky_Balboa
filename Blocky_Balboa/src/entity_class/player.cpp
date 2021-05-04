@@ -33,8 +33,8 @@ Player::Player()
 
 	model_matrix = cece::createTranslationMatrix(-1.0f * m_position);
 
-	m_entity->accessProgram()->setUniform("mvp", m_camera->getMVP().c_arr());
-	m_entity->accessProgram()->setUniform("model_matrix", model_matrix.c_arr());
+	m_entity->accessProgram()->set_uniform(UniformType::MAT4, "mvp", m_camera->getMVP().c_arr());
+	m_entity->accessProgram()->set_uniform(UniformType::MAT4, "model_matrix", model_matrix.c_arr());
 
 	lin_speed = 20.0f;
 	rot_speed = 4.0f;
@@ -57,13 +57,12 @@ void Player::updateToShader()
 {
 	model_matrix = cece::createTranslationMatrix(m_position)
 		* cece::createYRotationMatrix(-1.0f * m_camera->yaw);
-	m_entity->accessProgram()->updateUniform("model_matrix", model_matrix.c_arr());
-	m_entity->accessProgram()->updateUniform("mvp", m_camera->getMVP().c_arr());
+	m_entity->accessProgram()->update_uniform(UniformType::MAT4, "model_matrix", model_matrix.c_arr());
+	m_entity->accessProgram()->update_uniform(UniformType::MAT4, "mvp", m_camera->getMVP().c_arr());
 }
 
 void Player::moveForward()
 {
-	//update positions
 	m_position += m_forward * g_delta_time * lin_speed;
 
 	updateCameraPosition();
@@ -72,7 +71,6 @@ void Player::moveForward()
 
 void Player::moveBackward()
 {
-	//update positions
 	m_position -= m_forward * g_delta_time * lin_speed;
 
 	updateCameraPosition();
@@ -81,7 +79,6 @@ void Player::moveBackward()
 
 void Player::moveRight()
 {
-	//update positions
 	m_position += m_right * g_delta_time * lin_speed;
 
 	updateCameraPosition();
@@ -90,7 +87,6 @@ void Player::moveRight()
 
 void Player::moveLeft()
 {
-	//update positions
 	m_position -= m_right * g_delta_time * lin_speed;
 
 	updateCameraPosition();
@@ -99,7 +95,6 @@ void Player::moveLeft()
 
 void Player::moveUp()
 {
-	//update positions
 	m_position += m_up * g_delta_time * lin_speed;
 
 	updateCameraPosition();
@@ -108,7 +103,6 @@ void Player::moveUp()
 
 void Player::moveDown()
 {
-	//update positions
 	m_position -= m_up * g_delta_time * lin_speed;
 	if (m_position.y < 0.001) m_position.y = 0.0f;
 
