@@ -14,14 +14,14 @@ int main() {
 	g_MVP = player.getMVP();
 
 	Entity donut1(
-		"./res/models/donut.vmf",
+		"./res/models/donut.wfo",
 		"./res/shaders/donut.vert",
 		"./res/shaders/donut.frag"
 	);
 	donut1.setWorldPosition({ 0.0f, 1.0f, -10.f });
 
 	Entity terrain(
-		"./res/models/flatland.vmf",
+		"./res/models/flatland.wfo",
 		"./res/shaders/flatland.vert",
 		"./res/shaders/flatland.frag"
 	);
