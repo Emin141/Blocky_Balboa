@@ -90,14 +90,15 @@ void Shader::set_uniform(UniformType _uniform_type, const char *_uniform_name, c
 	case UniformType::INT1:
 		glUniform1i(uniform_map[_uniform_name], (GLint)(_data));
 	case UniformType::VEC3:
-		glUniform3fv(uniform_map[_uniform_name], 1, reinterpret_cast<const GLfloat *>(_data));
+		glUniform3fv(uniform_map[_uniform_name], 1, (const GLfloat *)(_data));
 	case UniformType::MAT4:
-		glUniformMatrix4fv(uniform_map[_uniform_name], 1, GL_FALSE, reinterpret_cast<const GLfloat *>(_data));
-	default: break;
+		glUniformMatrix4fv(uniform_map[_uniform_name], 1, GL_FALSE, (const GLfloat *)(_data));
+	default:
+		break;
 	}
 }
 
-void Shader::update_uniform(UniformType _uniform_type, const char* _uniform_name, const void* _data)
+void Shader::update_uniform(UniformType _uniform_type, const char *_uniform_name, const void *_data)
 {
 	Activate();
 	switch (_uniform_type)
@@ -105,9 +106,10 @@ void Shader::update_uniform(UniformType _uniform_type, const char* _uniform_name
 	case UniformType::INT1:
 		glUniform1i(uniform_map[_uniform_name], (GLint)(_data));
 	case UniformType::VEC3:
-		glUniform3fv(uniform_map[_uniform_name], 1, reinterpret_cast<const GLfloat *>(_data));
+		glUniform3fv(uniform_map[_uniform_name], 1, (const GLfloat *)(_data));
 	case UniformType::MAT4:
-		glUniformMatrix4fv(uniform_map[_uniform_name], 1, GL_FALSE, reinterpret_cast<const GLfloat *>(_data));
-	default: break;
+		glUniformMatrix4fv(uniform_map[_uniform_name], 1, GL_FALSE, (const GLfloat *)(_data));
+	default:
+		break;
 	}
 }

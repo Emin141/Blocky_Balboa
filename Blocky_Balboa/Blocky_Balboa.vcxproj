@@ -94,7 +94,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC; DEBUG;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FREE_CURSOR;GLEW_STATIC; DEBUG;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -112,7 +112,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FREE_CURSOR;GLEW_STATIC;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -130,7 +130,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC; DEBUG;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FREE_CURSOR;GLEW_STATIC; DEBUG;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -148,7 +148,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FREE_CURSOR;GLEW_STATIC;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -189,6 +189,7 @@
     <ClCompile Include="src\entity_class\player.cpp" />
     <ClCompile Include="src\opengl_classes\ebo_class.cpp" />
     <ClCompile Include="src\opengl_classes\mesh_class.cpp" />
+    <ClCompile Include="src\opengl_classes\new_mesh_class.cpp" />
     <ClCompile Include="src\opengl_classes\texture_class.cpp" />
     <ClCompile Include="src\opengl_classes\vao_class.cpp" />
     <ClCompile Include="src\opengl_classes\vbo_class.cpp" />
@@ -215,9 +216,11 @@
     <ClInclude Include="src\cece_math\cece_vector3.h" />
     <ClInclude Include="src\cece_math\cece_vector4.h" />
     <ClInclude Include="src\entity_class\entity.h" />
+    <ClInclude Include="src\entity_class\model.h" />
     <ClInclude Include="src\entity_class\player.h" />
     <ClInclude Include="src\opengl_classes\ebo_class.h" />
     <ClInclude Include="src\opengl_classes\mesh_class.h" />
+    <ClInclude Include="src\opengl_classes\new_mesh_class.h" />
     <ClInclude Include="src\opengl_classes\texture_class.h" />
     <ClInclude Include="src\opengl_classes\vao_class.h" />
     <ClInclude Include="src\opengl_classes\vbo_class.h" />

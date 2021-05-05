@@ -1,3 +1,4 @@
+#ifdef BLOCKY_BALBOA_VERSION_1_0_0
 #pragma once
 
 #include <iostream>
@@ -20,3 +21,4 @@ private:
 	std::vector<float> VertexPositions;
 	std::vector<uint32_t> VertexIndices;
 };
+#endif

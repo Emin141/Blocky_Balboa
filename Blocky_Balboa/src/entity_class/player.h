@@ -1,3 +1,4 @@
+#ifdef BLOCKY_BALBOA_VERSION_1_0_0
 #pragma once
 
 #include <cstdlib>
@@ -47,4 +48,4 @@ private:
 	void updateCameraPosition();
 	void updateToShader();
 };
-
+#endif

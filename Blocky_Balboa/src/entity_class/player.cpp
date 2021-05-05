@@ -1,3 +1,4 @@
+#ifdef BLOCKY_BALBOA_VERSION_1_0_0
 #include "player.h"
 
 static const float PI = 4.0f * atanf(1);
@@ -172,3 +173,4 @@ void Player::draw() const
 {
 	m_entity->draw();
 }
+#endif

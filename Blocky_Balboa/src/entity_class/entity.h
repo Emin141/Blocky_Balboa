@@ -1,3 +1,4 @@
+#ifdef BLOCKY_BALBOA_VERSION_1_0_0
 #pragma once
 
 #include "../opengl_classes/mesh_class.h"
@@ -42,3 +43,4 @@ private:
 	void setMVP() const;
 	void updateMVP() const;
 };
+#endif

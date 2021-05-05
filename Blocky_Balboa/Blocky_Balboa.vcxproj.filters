@@ -22,6 +22,8 @@
     <ClCompile Include="src\opengl_classes\shader_class.cpp" />
     <ClCompile Include="src\opengl_classes\shader_parser.cpp" />
     <ClCompile Include="src\window_manager\window_class.cpp" />
+    <ClCompile Include="src\entity_class\model.cpp" />
+    <ClCompile Include="src\opengl_classes\new_mesh_class.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\GLFW\glfw3.h" />
@@ -51,6 +53,8 @@
     <ClInclude Include="src\stb\stb_image.h" />
     <ClInclude Include="src\window_manager\event_class.h" />
     <ClInclude Include="src\window_manager\window_class.h" />
+    <ClInclude Include="src\entity_class\model.h" />
+    <ClInclude Include="src\opengl_classes\new_mesh_class.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\heatmap.png" />

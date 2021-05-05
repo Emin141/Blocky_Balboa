@@ -25,10 +25,12 @@ public:
 	inline ~Shader() { glDeleteProgram(m_ProgramID); }
 	inline GLuint getProgramID() const { return m_ProgramID; }
 	inline void Activate() { glUseProgram(m_ProgramID); }
+	inline void Deactivate() { glUseProgram(0);}
+	inline void Delete() { glDeleteProgram(m_ProgramID);}
 
 	void set_uniform(UniformType _uniform_type, const char* _uniform_name, const void* _data);
 	void update_uniform(UniformType _uniform_type, const char* _uniform_name, const void* _data);
-
+	
 private:
 	GLuint m_ProgramID;
 	GLuint uniform_index;

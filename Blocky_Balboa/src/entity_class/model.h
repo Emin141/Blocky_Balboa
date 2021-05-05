@@ -1,3 +1,4 @@
+#if 0
 #include "../opengl_classes/mesh_class.h"
 #include "../opengl_classes/texture_class.h"
 #include "../opengl_classes/shader_class.h"
@@ -55,3 +56,4 @@ Model::~Model()
     delete m_texture;
     delete m_shader;
 }
+#endif

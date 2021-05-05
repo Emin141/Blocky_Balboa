@@ -1,3 +1,4 @@
+#ifdef BLOCKY_BALBOA_VERSION_1_0_0
 #include <iostream>
 
 #include "entity.h"
@@ -137,3 +138,4 @@ void Entity::updateMVP() const
 {
 	m_Program->update_uniform(UniformType::MAT4, "mvp", g_MVP.c_arr());
 }
+#endif

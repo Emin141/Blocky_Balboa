@@ -1,3 +1,4 @@
+#ifdef BLOCKY_BALBOA_VERSION_1_0_0
 #include "mesh_class.h"
 
 #include <cstring>
@@ -43,3 +44,4 @@ Mesh::Mesh(const std::string& mesh_path)
 		}
 	}
 }
+#endif

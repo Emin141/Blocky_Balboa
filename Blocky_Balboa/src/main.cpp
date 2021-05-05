@@ -1,87 +1,78 @@
+#include <string>
+#include <iostream>
 #include "window_manager/window_class.h"
-#include "entity_class/player.h"
-#include "entity_class/entity.h"
+#include "opengl_classes/new_mesh_class.h"
+#include "opengl_classes/shader_class.h"
+#include "cece_camera/cece_camera.h"
+#include "opengl_classes/vao_class.h"
+#include "opengl_classes/vbo_class.h"
+#include "opengl_classes/ebo_class.h"
 
 float g_delta_time;
-cece::Matrix4 g_MVP;
 
-int main() {
+int main()
+{
 	cece::show_console_window();
-	cece::Window window(1600, 900, "Blocky", false);
-	window.setFaceCullingCCW();
+	cece::Window window(640, 640 * 9 / 16, "Blocky", false);
 
-	Player player;
-	g_MVP = player.getMVP();
+	cece::Camera camera;
 
-	Entity donut1(
-		"./res/models/donut.wfo",
-		"./res/shaders/donut.vert",
-		"./res/shaders/donut.frag"
-	);
-	donut1.setWorldPosition({ 0.0f, 1.0f, -10.f });
+	cece::Matrix4 model_matrix;
+	cece::Matrix4 mvp_matrix = camera.getMVP();
 
-	Entity terrain(
-		"./res/models/flatland.wfo",
-		"./res/shaders/flatland.vert",
-		"./res/shaders/flatland.frag"
-	);
-	terrain.setWorldPosition({ 0.0f, -1.0f, 0.0f });
+	model_matrix.print();
+	mvp_matrix.print();
 
-	while (window.isOpen()) {
+	Shader shader_program("./res/shaders/colored_icososphere.frag",
+						  "./res/shaders/colored_icososphere.frag");
+	shader_program.Activate();
+	shader_program.set_uniform(UniformType::MAT4, "model_matrix", model_matrix.c_arr());
+	shader_program.set_uniform(UniformType::MAT4, "mvp", mvp_matrix.c_arr());
+
+	GLfloat vertex_data[] = {
+		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+		0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+		0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0.0f, 0.0f, 1.0f};
+	GLuint indices[] = {
+		0, 1, 2,
+		0, 2, 3};
+
+	VAO vao;
+	vao.Bind();
+
+	VBO vbo(vertex_data, sizeof(vertex_data));
+	EBO ebo(indices, sizeof(indices));
+
+	vbo.Bind();
+	ebo.Bind();
+
+	vao.LinkAttrib(vbo, 0, 3, GL_FLOAT, 5 * sizeof(float), (void *)0);
+	vao.LinkAttrib(vbo, 1, 2, GL_FLOAT, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+
+	while (window.isOpen())
+	{
 
 		using Key = Event::Key;
-		if (window.keyIsPressed(Key::Escape)) window.close();
-		
+		if (window.keyIsPressed(Key::Escape))
+			window.close();
+
 		window.prepareDraw();
 
-		//Event handling should be done as an array of 
-		//boolean states that define wether the key is pressed or not
-		//The array should be implemented inside the window class
-		//unsure wether a switch statement is a good idea - switch 
-		//allows for only one state to be active at a time
+		shader_program.Activate();
+		ebo.Bind();
+		vao.Bind();
 
-		player.yaw(window.getCursorChangeX());
-		player.pitch(window.getCursorChangeY());
+		glDrawElements(GL_TRIANGLES, 6,
+					   GL_UNSIGNED_INT, nullptr);
 
-		if (window.keyIsPressed(Key::W)) player.moveForward();
-		if (window.keyIsPressed(Key::S)) player.moveBackward();
-		if (window.keyIsPressed(Key::D)) player.moveRight();
-		if (window.keyIsPressed(Key::A)) player.moveLeft();
-		if (window.keyIsPressed(Key::Space)) player.moveUp();
-		if (window.keyIsPressed(Key::L_shift)) player.moveDown();
-
-		g_MVP = player.getMVP();
-
-		terrain.draw();
-		
-		donut1.updateWorldPosition({ 0.0f, 1.0f, -10.0f });
-		donut1.draw();
-		donut1.updateWorldPosition({ 0.0f, 1.0f, -15.0f });
-		donut1.draw();
-		donut1.updateWorldPosition({ 0.0f, 1.0f, -5.0f });
-		donut1.draw();
-		donut1.updateWorldPosition({ 5.0f, 1.0f, -10.0f });
-		donut1.draw();
-		donut1.updateWorldPosition({ 5.0f, 1.0f, -15.0f });
-		donut1.draw();
-		donut1.updateWorldPosition({ 5.0f, 1.0f, -5.0f });
-		donut1.draw();
-		donut1.updateWorldPosition({ -5.0f, 1.0f, -10.0f });
-		donut1.draw();
-		donut1.updateWorldPosition({ -5.0f, 1.0f, -15.0f });
-		donut1.draw();
-		donut1.updateWorldPosition({ -5.0f, 1.0f, -5.0f });
-		donut1.draw();
-
-		donut1.updateWorldPosition({-0.0f, 0.0f, 0.0f});
-		donut1.draw();
-
-		player.draw();
+		shader_program.Deactivate();
+		vao.Unbind();
+		ebo.Unbind();
 
 		window.pollEvents();
 		window.swapBuffers();
 	}
 	window.~Window();
-
 	return 0;
 }
