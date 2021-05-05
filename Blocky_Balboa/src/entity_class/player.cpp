@@ -12,7 +12,7 @@ static float toRadians(float degrees_angle)
 Player::Player()
 {
 	m_entity = new Entity(
-		"./res/models/haze_sljabadar.vmf",
+		"./res/models/haze_sljabadar.wfo",
 		"./res/shaders/player_shader.vert",
 		"./res/shaders/player_shader.frag"
 	);
