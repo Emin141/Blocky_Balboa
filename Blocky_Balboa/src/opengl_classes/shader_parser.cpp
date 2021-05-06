@@ -11,6 +11,7 @@ std::string getShaderSource(const std::string& filepath)
 	if (!input_file)
 	{
 		fprintf(stderr, "Could not open file at %s!\n", filepath.c_str());
+		std::cin.get();
 	}
 
 	std::string line;

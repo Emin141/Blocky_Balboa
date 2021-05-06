@@ -120,7 +120,7 @@ void Entity::draw()
 	updateMVP();
 
 	m_ebo.Bind();
-	m_vao.Bind();
+	m_vao.Bind(); 
 
 	glDrawElements(GL_TRIANGLES, m_number_of_faces, GL_UNSIGNED_INT, NULL);
 

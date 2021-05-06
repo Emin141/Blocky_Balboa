@@ -10,7 +10,7 @@ public:
     Mesh(const Mesh &other) = delete;
     Mesh(Mesh &&other) = delete;
 
-    Mesh(const std::string &_mesh_source_path,
+    Mesh(const std::string &_mesh_name,
          std::string &_out_texture_source_path);
 
     ~Mesh();

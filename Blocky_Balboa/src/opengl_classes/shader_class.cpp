@@ -54,8 +54,10 @@ SubShader::SubShader(Type shader_type, const std::string &source_path)
 	_print_shader_info_log(m_ShaderID);
 }
 
-Shader::Shader(const std::string &vertex_shader_source_path, const std::string &fragment_shader_source_path)
+Shader::Shader(const std::string& _name)   
 {
+	const std::string vertex_shader_source_path = "./res/shaders/" + _name + ".vert";
+	const std::string fragment_shader_source_path = "./res/shaders/" + _name + ".frag";
 	SubShader vertex_shader(SubShader::Type::VERTEX, vertex_shader_source_path);
 	SubShader fragment_shader(SubShader::Type::FRAGMENT, fragment_shader_source_path);
 	m_ProgramID = glCreateProgram();

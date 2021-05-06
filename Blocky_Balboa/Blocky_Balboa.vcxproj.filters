@@ -22,7 +22,6 @@
     <ClCompile Include="src\opengl_classes\shader_class.cpp" />
     <ClCompile Include="src\opengl_classes\shader_parser.cpp" />
     <ClCompile Include="src\window_manager\window_class.cpp" />
-    <ClCompile Include="src\entity_class\model.cpp" />
     <ClCompile Include="src\opengl_classes\new_mesh_class.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -72,8 +71,6 @@
     <None Include="res\shaders\terrain.vert" />
     <None Include="res\shaders\blocky_balboa.frag" />
     <None Include="res\shaders\blocky_balboa.vert" />
-    <None Include="res\models\donut.wfo" />
-    <None Include="res\models\flatland.wfo" />
-    <None Include="res\models\haze_sljabadar.wfo" />
+    <None Include="src\DESIGN_DOCUMNT.md" />
   </ItemGroup>
 </Project>

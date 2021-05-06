@@ -21,7 +21,8 @@ class Shader
 public:
 	Shader() = delete;
 	Shader(const Shader& otherProgram) = delete;
-	Shader(const std::string& vertex_shader_source_path, const std::string& fragment_shader_source_path);
+	Shader(const std::string& _name);
+	//Shader(const std::string& vertex_shader_source_path, const std::string& fragment_shader_source_path);
 	inline ~Shader() { glDeleteProgram(m_ProgramID); }
 	inline GLuint getProgramID() const { return m_ProgramID; }
 	inline void Activate() { glUseProgram(m_ProgramID); }
