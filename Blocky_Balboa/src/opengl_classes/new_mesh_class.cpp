@@ -124,15 +124,17 @@ Mesh::Mesh(const std::string &_mesh_name,
                     }
                 }
                 std::stringstream ss;
+                std::string value;
 
                 ss << text;
-                unsigned int v = atoi(ss.str().c_str()) - 1; //-1 because 0 is the first index
+                ss >> value;
+                unsigned int v = atoi(value.c_str()) - 1; //-1 because 0 is the first index
 
-                ss << text;
-                unsigned int vt = atoi(ss.str().c_str()) - 1;
+                ss >> value;
+                unsigned int vt = atoi(value.c_str()) - 1;
 
-                ss << text;
-                unsigned int vn = atoi(ss.str().c_str()) - 1;
+                ss >> value;
+                unsigned int vn = atoi(value.c_str()) - 1;
 
                 //making a vertex and pushing it to the vertex array
                 vertex_data.push_back({pos[v], tex_coord[vt], normal[vn]});

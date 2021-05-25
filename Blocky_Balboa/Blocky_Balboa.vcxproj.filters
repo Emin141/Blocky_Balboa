@@ -72,5 +72,7 @@
     <None Include="res\shaders\blocky_balboa.frag" />
     <None Include="res\shaders\blocky_balboa.vert" />
     <None Include="src\DESIGN_DOCUMNT.md" />
+    <None Include="res\shaders\colored_icososphere.frag" />
+    <None Include="res\shaders\colored_icososphere.vert" />
   </ItemGroup>
 </Project>
